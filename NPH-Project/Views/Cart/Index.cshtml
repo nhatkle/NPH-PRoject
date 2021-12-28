@@ -1,0 +1,101 @@
+﻿@model NPH_Project.Models.Cart
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+
+<!--Collection Banner-->
+<div class="page section-header text-center">
+    <div class="page-title">
+        <div class="wrapper"><h1 class="page-width">YOUR CART</h1></div>
+    </div>
+</div>
+<!--End Collection Banner-->
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Product Code</td>
+                <td>Product Name</td>
+                <td>Image</td>
+                <td>Quantity</td>
+                <td>Unit Price</td>
+                <td>Total per Item</td>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                decimal total = Convert.ToDecimal(item.Product.Price.Value * item.Quantity);
+                <tr>
+                    <td>@Html.DisplayFor(model => item.Product.ID) </td>
+                    <td>@Html.DisplayFor(model => item.Product.Name) </td>
+                    <td><img src="@item.Product.Image" width="100" /></td>
+                    <td>
+                        @using (Html.BeginForm("UpdateQuantity", "Cart"))
+                        {
+                            <input type="hidden" value="@item.Product.ID" name="Product_ID" />
+                            <input type="number" value="@item.Quantity" name="Quantity" />
+                            <input type="submit" value="Update Quantity" />
+                        }
+                    </td>
+                    <td> @string.Format(info, "{0:#,#} VND", item.Product.Price) </td>
+                    <td>Total:  @string.Format(info, "{0:#,#} VND", @total)</td>
+                    <td>
+                        <a href="/Cart/RemoveItem/@item.Product.ID">Remove</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="4" style="text-align:center">
+                    @using (Html.BeginForm("CheckOut", "Cart"))
+                    {
+                        <table style="border-collapse:separate;border-spacing:5px;">
+                            <tr>
+                                <td>Code Customer:</td>
+                                <td>
+                                    <input type="number" name="CodeCustomer" required />
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Address Delivery:</td>
+                                <td>
+                                    <input type="text" name="AddressDelivery" required />
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="@Url.Action("Create","Customers")" class="btn btn-success">Register</a>
+                                </td>
+                                <td>
+                                    <input type="submit" value="CheckOut" class="btn btn-success" />
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align:right">Sum Total:  @string.Format(info, "{0:#,#} VND", Model.TotalMoney())</td>
+            </tr>
+        </tfoot>
+
+    </table>
+    <a href="@Url.Action("Index","Product")">Continue to Shopping |</a>
+    <a href="">CheckOut</a>
+}
+
+

@@ -1,0 +1,13 @@
+﻿@model List<Models.EF.Menu>
+<div class="mobile-nav-wrapper" role="navigation">
+  
+        <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div>
+        <ul id="MobileNav" class="mobile-nav">
+            @foreach (var item in Model)
+            {
+        <li class="lvl1">
+            <a href="@item.Link" rel="nofollow" target="@item.Target">@item.Text </a>
+        </li>
+            }
+                    </ul>
+</div>

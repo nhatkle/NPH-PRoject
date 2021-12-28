@@ -1,0 +1,196 @@
+﻿@model PagedList.IPagedList<Models.EF.Product>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    PRODUCT}
+@Html.ActionLink("Create New", "Create")
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+        <input type="text" class="form-control bg-light border small" placeholder="Search for..." name="searchString" value="@ViewBag.SearchString"
+               aria-label="Search" aria-describedby="basic-addon2" />
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
+<hr>
+@using (Html.BeginForm("Index", "Product", FormMethod.Get))
+{
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Image
+                        </th>
+                        <th>
+                            Product Name
+                        </th>
+                        <th>
+                            Product Code
+                        </th>
+                        <th>
+                            MetaTitle
+                        </th>
+                        <th>
+                            Description
+                        </th>
+
+                        <th>
+                            Size
+                        </th>
+                        <th>
+                            MoreImage
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th>
+                            Discount
+                        </th>
+                        <th>
+                            IncludedVAT
+                        </th>
+                        <th>
+                            Quantity
+                        </th>
+                        <th>
+                            Category
+                        </th>
+                        <th>
+                            Detail
+                        </th>
+                        <th>
+                            Warranty
+                        </th>
+                        <th>
+                            Created Date
+                        </th>
+                        <th>
+                            CreatedBy
+                        </th>
+                        <th>
+                            Modified Date
+                        </th>
+                        <th>
+                            Modified By
+                        </th>
+                        <th>
+                            Meta Keywords
+                        </th>
+                        <th>
+                            Meta Descriptions
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            TopHot
+                        </th>
+                        <th>
+                            ViewCount
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.ID">
+                            <td>
+                                <img style="width:300px" src="@item.Image" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MetaTitle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Size)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MoreImage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DiscountID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IncludedVAT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CategoryID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Detail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Warranty)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ModifiedDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ModifiedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MetaKeywords)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MetaDescriptions)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TopHot)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ViewCount)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
+                                           {
+                                               Confirm = "Delete this product?",
+                                                    OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                               HttpMethod = "Delete"
+                                           })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
+        </div>
+    </div>
+}
+

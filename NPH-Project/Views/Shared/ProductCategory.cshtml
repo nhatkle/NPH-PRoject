@@ -1,0 +1,17 @@
+﻿@model List<Models.EF.ProductCategory>
+
+<!--Categories-->
+<div class="sidebar_widget categories filter-widget">
+    <div class="widget-title"><h2>Categories</h2></div>
+    <div class="widget-content">
+        <ul class="sidebar_categories">
+            @foreach (var item in Model)
+            {
+               <li class="lvl-1"><a href="/product/@item.MetaTitle-@item.ID" class="site-nav">@item.Name</a></li>
+            }
+            
+
+        </ul>
+    </div>
+</div>
+<!--Categories-->

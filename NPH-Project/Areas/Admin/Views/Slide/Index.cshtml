@@ -1,0 +1,114 @@
+﻿@model PagedList.IPagedList<Models.EF.Slide>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    SLIDE}
+@Html.ActionLink("Create New", "Create")
+
+@using (Html.BeginForm("Index", "Slide", FormMethod.Get))
+{
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Image
+
+                        </th>
+                        <th>
+                            Display Order
+                        </th>
+                        <th>
+                            Link
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Created Date
+                        </th>
+                        <th>
+                            Created By
+                        </th>
+                        <th>
+                            Modified Date
+                        </th>
+                        <th>
+                            Modified By
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.ID">
+                            <td>
+                                <img style="width:300px" src="@item.Image" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DisplayOrder)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Link)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ModifiedDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ModifiedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
+                                           {
+                                               Confirm = "Delete this slide?",
+                                                    OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                               HttpMethod = "Delete"
+                                           })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <br />
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

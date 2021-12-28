@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var slides = (List<Models.EF.Slide>)ViewBag.Slides;
+    var listNewProduct = (List<Models.EF.Product>)ViewBag.NewProducts;
+
+}
+<!--Home slider-->
+<div class="slideshow slideshow-wrapper pb-section sliderFull">
+    <div class="home-slideshow">
+        @foreach (var item in slides)
+        {
+            <div class="slide">
+                <div class="blur-up lazyload bg-size" >
+              
+                   <img class="blur-up lazyload bg-img" data-src="@item.Link" src="@item.Image"/>
+                    
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+<!--End Home slider-->
+<!--NEW PRODUCT-->
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section-header text-center">
+                    <h2 class="h2">NEW PRODUCTS</h2>
+                    <p>Our new products</p>
+                </div>
+                <div class="productSlider grid-products">
+                    @foreach (var item in listNewProduct)
+                    {
+                        var url = "/details/" + item.MetaTitle + "-" + item.ID;
+                        <div class="col-12 item">
+                            <!-- start product image -->
+                            <div class="product-image">
+                                <!-- start product image -->
+                                <a href="@url" class="grid-view-item__link">
+                                    <!-- image -->
+                                    <img class="primary blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="image" title="product">
+                                    <!-- End image -->
+                                    <!-- Hover image -->
+                                    <img class="hover blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="image" title="product">
+                                    <!-- End hover image -->
+                                    <!-- Variant Image -->
+                                    <img class="grid-view-item__image hover variantImg" src="@item.Image" alt="image" title="product">
+                                    <!-- Variant Image-->
+                                    <!-- product label -->
+                                    <div class="product-labels rounded"> <span class="lbl pr-label1">new</span></div>
+                                    <!-- End product label -->
+                                </a>
+                                <!-- end product image -->
+                                <!-- Start product button -->
+                                <form class="variants add" action="#" onclick="window.location.href='/Cart/AddItem/@item.ID'" method="post">
+                                    <button class="btn btn-addto-cart" type="button" tabindex="0">BUY IT NOW</button>
+                                </form>
+                                <div class="button-set">
+                                    <a href="javascript:void(0)" title="Quick View" class="quick-view-popup quick-view" data-toggle="modal" data-target="#content_quickview">
+                                        <i class="icon anm anm-search-plus-r"></i>
+                                    </a>
+                                    <div class="wishlist-btn">
+                                        <a class="wishlist add-to-wishlist" href="wishlist.html">
+                                            <i class="icon anm anm-heart-l"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- end product button -->
+                            </div>
+                            <!-- end product image -->
+                            <!--start product details -->
+                            <div class="product-details text-center">
+                                <!-- product name -->
+                                <div class="product-name">
+                                    <a href="product-layout-1.html">@item.Name</a>
+                                </div>
+                                <!-- End product name -->
+                                <!-- product price -->
+                                <div class="product-price">
+                                    <!--    <span class="old-price">$500.00</span> -->
+
+                                    <span class="price">@(item.Price.HasValue ? item.Price.Value.ToString("N0"):"Contact")</span>
+                                </div>
+                                <!-- End product price -->
+
+                            </div>
+                            <!-- End product details -->
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Weekly Bestseller-->
+
+<!--Latest Blog
+<div class="latest-blog section pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section-header text-center">
+                    <h2 class="h2">Latest From our Blog</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="wrap-blog">
+                    <a href="blog-left-sidebar.html" class="article__grid-image">
+                        <img src="assets/images/blog/post-img1.jpg" alt="It's all about how you wear" title="It's all about how you wear" class="blur-up lazyloaded" />
+                    </a>
+                    <div class="article__grid-meta article__grid-meta--has-image">
+                        <div class="wrap-blog-inner">
+                            <h2 class="h3 article__title">
+                                <a href="blog-left-sidebar.html">It's all about how you wear</a>
+                            </h2>
+                            <span class="article__date">May 02, 2017</span>
+                            <div class="rte article__grid-excerpt">
+                                I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account...
+                            </div>
+                            <ul class="list--inline article__meta-buttons">
+                                <li><a href="blog-article.html">Read more</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="wrap-blog">
+                    <a href="blog-left-sidebar.html" class="article__grid-image">
+                        <img src="assets/images/blog/post-img2.jpg" alt="27 Days of Spring Fashion Recap" title="27 Days of Spring Fashion Recap" class="blur-up lazyloaded" />
+                    </a>
+                    <div class="article__grid-meta article__grid-meta--has-image">
+                        <div class="wrap-blog-inner">
+                            <h2 class="h3 article__title">
+                                <a href="blog-right-sidebar.html">27 Days of Spring Fashion Recap</a>
+                            </h2>
+                            <span class="article__date">May 02, 2017</span>
+                            <div class="rte article__grid-excerpt">
+                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab...
+                            </div>
+                            <ul class="list--inline article__meta-buttons">
+                                <li><a href="blog-article.html">Read more</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Latest Blog-->

@@ -1,0 +1,29 @@
+﻿@{
+    var menus = (List<Models.EF.Menu>)ViewBag.Menus;
+    var ListProducts = (List<Models.EF.ProductCategory>)ViewBag.ListProducts;
+ }
+<ul id="siteNav" class="site-nav medium center hidearrow">
+   @foreach (var item in menus)
+    {
+    <li class="lvl1 parent dropdown">
+        <a href="@item.Link" target="@item.Target">@item.Text </a>
+        <!--
+    <ul class="dropdown">
+        @foreach (var items in ListProducts)
+        {
+            if(item.ID == items.ParentID)
+            {
+            <li><a href="/product/@items.MetaTitle-@items.ID" class="site-nav" id="@items.ParentID">@items.Name</a></li>
+            }
+
+        }
+
+    </ul>
+        -->
+    </li>
+    }
+</ul>
+
+   
+
+
