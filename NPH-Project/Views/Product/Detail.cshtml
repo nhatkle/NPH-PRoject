@@ -31,12 +31,12 @@
                                 </a>
                             </div>
                         </div>
-                   
+
                         <div class="zoompro-wrap product-zoom-right pl-20">
                             <div class="zoompro-span">
                                 <img class="blur-up lazyload zoompro" data-zoom-image="@Model.Image" alt="" src="@Model.Image" />
                             </div>
-                         <!-- <div class="product-labels"><span class="lbl on-sale">Sale</span><span class="lbl pr-label1">new</span></div>-->
+                            <!-- <div class="product-labels"><span class="lbl on-sale">Sale</span><span class="lbl pr-label1">new</span></div>-->
 
                         </div>
                         <div class="lightboximages">
@@ -56,9 +56,9 @@
                                 <span id="ProductPrice-product-template"><span class="money">@string.Format(info, "{0:#,#} VND", (Model.Price.HasValue ? Model.Price.Value.ToString("N0") : "Contact"))</span></span>
                             </span>
                             <!--
-                            <span class="visually-hidden">Regular price</span>
-                            <s id="ProductPrice-product-template"><span class="money">(Model.Price.HasValue? Model.Price.Value.ToString("N0"):"Contact")</span></s>
-                                -->
+                        <span class="visually-hidden">Regular price</span>
+                        <s id="ProductPrice-product-template"><span class="money">(Model.Price.HasValue? Model.Price.Value.ToString("N0"):"Contact")</span></s>
+                            -->
 
 
                         </p>
@@ -112,21 +112,24 @@
                                 </button>
                             </div>
                             <!--<div class="shopify-payment-button" data-shopify="payment-button">
-        <button type="button" class="shopify-payment-button__button shopify-payment-button__button--unbranded">Buy it now</button>
-    </div>-->
+                            <button type="button" class="shopify-payment-button__button shopify-payment-button__button--unbranded">Buy it now</button>
+                        </div>-->
 
                         </div>
                         <!-- End Product Action -->
                     </form>
 
 
+
                 </div>
+
             </div>
+
         </div>
         <!--End-product-single-->
         <!--Product Tabs-->
         <div class="tabs-listing">
-            <ul class="product-tabs">
+            <ul class="li product-tabs">
                 <li rel="tab1"><a class="tablink">Product Details</a></li>
                 <li rel="tab2"><a class="tablink">Shipping &amp; Returns</a></li>
             </ul>
@@ -153,33 +156,29 @@
                 <p class="sub-heading">You can stop autoplay, increase/decrease aniamtion speed and number of grid to show and products from store admin.</p>
             </header>
             <div class="productPageSlider">
-                <div class="col-12 item">
-                    @foreach (var item in relatedProducts)
-                    {
-                        var url = "/details/" + item.MetaTitle + "-" + item.ID;
+                @foreach (var item in relatedProducts)
+                {
+                    var url = "/details/" + item.MetaTitle + "-" + item.ID;
+                    <div class="col-12 item">
                         <!-- start product image -->
                         <div class="product-image">
                             <!-- start product image -->
                             <a href="@url">
                                 <!-- image -->
-                                <img class="primary blur-up lazyload" data-src="assets/images/product-images/product-image1.jpg" src="@item.Image" alt="image" title="product">
+                                <img class="primary blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="image" title="product">
                                 <!-- End image -->
-                                <!-- Hover image
-                                <img class="hover blur-up lazyload" data-src="assets/images/product-images/product-image1-1.jpg" src="assets/images/product-images/product-image1-1.jpg" alt="image" title="product">
+                                <!-- Hover image -->
+                                <img class="hover blur-up lazyload" data-src="@item.Image" alt="image" title="product">
                                 <!-- End hover image -->
-                                <!-- product label -->
-                                <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span class="lbl pr-label1">new</span></div>
-                                <!-- End product label -->
+
                             </a>
                             <!-- end product image -->
                             <!-- Start product button -->
-                            <form class="variants add" action="#" onclick="window.location.href=@url  " method="post">
-                                <button class="btn btn-addto-cart" type="button" tabindex="0">Select Options</button>
+                            <form class="variants add" action="#" onclick="window.location.href='@url'  " method="post">
+                                <button class="btn btn-addto-cart" type="button" tabindex="0">Click to see</button>
                             </form>
                             <div class="button-set">
-                                <a href="#" title="Quick View" class="quick-view" tabindex="0">
-                                    <i class="icon anm anm-search-plus-r"></i>
-                                </a>
+
                                 <div class="wishlist-btn">
                                     <a class="wishlist add-to-wishlist" href="wishlist.html">
                                         <i class="icon anm anm-heart-l"></i>
@@ -190,10 +189,9 @@
                         </div>
                         <!-- end product image -->
 
-                    }
 
-                </div>
-
+                    </div>
+                }
             </div>
         </div>
         <!--End Related Product Slider-->

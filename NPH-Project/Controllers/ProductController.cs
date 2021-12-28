@@ -12,7 +12,10 @@ namespace NPH_Project.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            ViewBag.Products = new ProductDao().ListAll();
+            var productDao = new ProductDao();
+            ViewBag.FeatureProducts = productDao.ListFeatureProduct(5);
+            ViewBag.FeatureProducts = productDao.ListRelatedProduct(5);
+            ViewBag.Products = productDao.ListAll();
             return View();
         }
         [ChildActionOnly]
@@ -50,6 +53,28 @@ namespace NPH_Project.Controllers
             ViewBag.Category = new ProductCategoryDao().ViewDetail(product.CategoryID.Value);
             ViewBag.RelatedProducts = new ProductDao().ListRelatedProduct(id);
             return View(product);
+        }
+
+        public ActionResult Search(string keyword, int page = 1, int pageSize = 1)
+        {
+            int totalRecord = 0;
+            var model = new ProductDao().Search(keyword, ref totalRecord, page, pageSize);
+
+            ViewBag.Total = totalRecord;
+            ViewBag.Page = page;
+            ViewBag.Keyword = keyword;
+            int maxPage = 5;
+            int totalPage = 0;
+
+            totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize));
+            ViewBag.TotalPage = totalPage;
+            ViewBag.MaxPage = maxPage;
+            ViewBag.First = 1;
+            ViewBag.Last = totalPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Prev = page - 1;
+
+            return View(model);
         }
     }
 }

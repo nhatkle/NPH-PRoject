@@ -14,8 +14,8 @@ namespace NPH_Project.Controllers
         {
             ViewBag.Slides = new SlideDao().ListAll();
             var productDao = new ProductDao();
-            ViewBag.NewProducts = productDao.ListNewProduct(10);
-            ViewBag.FeatureProducts = productDao.ListFeatureProduct(10);
+            ViewBag.NewProducts = productDao.ListNewProduct(5);
+           
             return View();
         }
 
