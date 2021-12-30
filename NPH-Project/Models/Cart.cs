@@ -6,14 +6,14 @@ using System.Web;
 
 namespace NPH_Project.Models
 {
-    public class CartItem
+    /*public class CartItem
     {
         public Product Product { get; set; }
         public int Quantity { get; set; }
-    }
+    }*/
     public class Cart
     {
-        List<CartItem> items = new List<CartItem>();
+        /*List<CartItem> items = new List<CartItem>();
         public IEnumerable<CartItem> Items
         {
             get { return items; }
@@ -63,6 +63,14 @@ namespace NPH_Project.Models
         public void ClearCart()
         {
             items.Clear(); //Clear cart for new order
+          public ActionResult RemoveItem(long id)
+        {
+            Cart cart = Session["Cart"] as Cart;
+            cart.RemoveItem(id);
+            return RedirectToAction("Index", "Cart");
         }
+        }*/
+
+
     }
 }

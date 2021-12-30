@@ -1,4 +1,6 @@
 ﻿using Models.DAO;
+using NPH_Project.Common;
+using NPH_Project.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ namespace NPH_Project.Controllers
 {
     public class HomeController : Controller
     {
-
+     
         public ActionResult Index()
         {
             ViewBag.Slides = new SlideDao().ListAll();
@@ -40,6 +42,18 @@ namespace NPH_Project.Controllers
         {
             var model = new MenuDao().ListByGroupId(2);
             return PartialView(model);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult BagCart()
+        {
+            var cart = Session[CommonConstants.CartSession];
+            var list = new List<CartItem>();
+            if (cart != null)
+            {
+                list = (List<CartItem>)cart;
+            }
+            return PartialView(list);
         }
 
         [ChildActionOnly]

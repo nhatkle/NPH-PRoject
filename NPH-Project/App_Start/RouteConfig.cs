@@ -11,15 +11,15 @@ namespace NPH_Project
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-         
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-               routes.MapRoute(
-               name: "About",
-               url: "about",
-               defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
-               namespaces: new[] { "NPH_Project.Controllers" }
-           );
+            routes.MapRoute(
+            name: "About",
+            url: "about",
+            defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
+            namespaces: new[] { "NPH_Project.Controllers" }
+        );
             routes.MapRoute(
                name: "Product Detail",
                url: "details/{metatitle}-{id}",
@@ -33,12 +33,25 @@ namespace NPH_Project
                defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional },
                namespaces: new[] { "NPH_Project.Controllers" }
            );
-               routes.MapRoute(
-              name: "Admin",
-              url: "admin",
-              defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional },
-              namespaces: new[] { "NPH_Project.Areas.Admin.Controllers" }
-          );
+            routes.MapRoute(
+               name: "Cart",
+               url: "cart",
+               defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional },
+               namespaces: new[] { "NPH_Project.Controllers" }
+           );
+    
+            routes.MapRoute(
+             name: "Add Cart",
+             url: "add-to-cart",
+             defaults: new { controller = "Cart", action = "AddItem", id = UrlParameter.Optional },
+             namespaces: new[] { "NPH_Project.Controllers" }
+         );
+            routes.MapRoute(
+           name: "Admin",
+           url: "admin",
+           defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional },
+           namespaces: new[] { "NPH_Project.Areas.Admin.Controllers" }
+       );
             routes.MapRoute(
               name: "Default",
               url: "{controller}/{action}/{id}",

@@ -242,6 +242,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2708,7 +2709,7 @@
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Cart\BagCart.cshtml" />
+    <Content Include="Views\Shared\BagCart.cshtml" />
     <Content Include="Views\Cart\ShoppingSuccess.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Shared\_Dropdown.cshtml" />

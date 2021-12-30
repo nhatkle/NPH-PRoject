@@ -3,15 +3,101 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Models.DAO;
 using Models.EF;
 using NPH_Project.Models;
+using System.Web.Script.Serialization;
 
 namespace NPH_Project.Controllers
 {
     public class CartController : Controller
     {
+        private const string CartSession = "CartSession";
         // GET: Cart
-        NPHDbContext db = new NPHDbContext();
+        public ActionResult Index()
+        {
+            var cart = Session[CartSession];
+            var list = new List<CartItem>();
+            if (cart != null)
+            {
+                list = (List<CartItem>)cart;
+            }
+            return View(list);
+        }
+        public ActionResult AddItem(long productId, int quantity)
+        {
+            var product = new ProductDao().ViewDetail(productId);
+            var cart = Session[CartSession];
+            if(cart != null)
+            {
+                var list = (List<CartItem>)cart;
+                if(list.Exists(x=>x.Product.ID == productId))
+                {
+                    foreach (var item in list)
+                    {
+                        if (item.Product.ID == productId)
+                        {
+                            item.Quantity += quantity;
+                        }
+                    }
+                }
+                else
+                {
+                    // New Item
+                    var item = new CartItem();
+                    item.Product = product;
+                    item.Quantity = quantity;
+                    list.Add(item);
+                    
+                }
+                //Get to session
+                Session[CartSession] = list;
+
+            }
+            else
+            {
+                // New Item
+                var item = new CartItem();
+                item.Product = product;
+                item.Quantity = quantity;
+                var list = new List<CartItem>();
+                list.Add(item);
+                //Get to session
+                Session[CartSession] = list;
+            } 
+            return RedirectToAction("Index");
+        }
+
+        public JsonResult Update(string cartModel)
+        {
+            var jsonCart = new JavaScriptSerializer().Deserialize<List<CartItem>>(cartModel);
+            var sessionCart =(List<CartItem>)Session[CartSession];
+            foreach(var item in sessionCart)
+            {
+                var jsonItem = jsonCart.SingleOrDefault(x => x.Product.ID == item.Product.ID);
+                if (jsonItem != null)
+                {
+                    item.Quantity = jsonItem.Quantity;
+                }   
+            }
+            Session[CartSession] = sessionCart;
+            return Json(new
+            {
+                status = true
+            });
+        }
+
+        public JsonResult Delete(long productId)
+        {
+            var sessionCart = (List<CartItem>)Session[CartSession];
+            sessionCart.RemoveAll(x => x.Product.ID == productId);
+            Session[CartSession] = sessionCart;
+            return Json(new
+            {
+                status = true
+            });
+        }
+        /*NPHDbContext db = new NPHDbContext();
         public Cart GetCart()
         {
             Cart cart = Session["Cart"] as Cart;
@@ -95,6 +181,8 @@ namespace NPH_Project.Controllers
                 return Content("Error Checkout.Please information of Customer...");
 
             }
-        }
+        }*/
+
+
     }
 }
