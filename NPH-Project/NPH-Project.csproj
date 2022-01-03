@@ -226,6 +226,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SlideController.cs" />
@@ -242,7 +243,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs" />
-    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2677,6 +2677,8 @@
     <Content Include="Areas\Admin\Views\Blog\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Blog\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Blog\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2714,6 +2716,7 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Shared\_Dropdown.cshtml" />
     <Content Include="Views\Shared\_ListPopularProduct.cshtml" />
+    <Content Include="Views\Cart\BagCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -106,18 +106,6 @@ namespace Models.DAO
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
         //CLIENT
         public List<Product> ListAll()
         {

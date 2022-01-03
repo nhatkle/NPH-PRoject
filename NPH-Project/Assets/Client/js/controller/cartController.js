@@ -6,7 +6,9 @@
         $('#btnContinue').off('click').on('click', function () {
             window.location.href = "/product";
         });
-
+        $('#btnPayment').off('click').on('click', function () {
+            window.location.href = "/checkout";
+        });
         $('#btnUpdate').off('click').on('click', function () {
             var listProduct = $('.txtQuantity');
             var cartList = [];
@@ -35,7 +37,7 @@
         $('.btn-delete').off('click').on('click', function (e) {
             e.preventDefault();
             $.ajax({
-                data: { id: $(this).data('id') } ,
+                data: { id: $(this).data('id') },
                 url: '/Cart/Delete',
                 dataType: 'json',
                 type: 'POST',
@@ -43,11 +45,9 @@
                     if (res.status == true) {
                         window.location.href = "/cart";
                     }
-
                 }
             })
         });
-       
     }
 }
 cart.init();

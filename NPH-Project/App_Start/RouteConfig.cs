@@ -39,13 +39,25 @@ namespace NPH_Project
                defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional },
                namespaces: new[] { "NPH_Project.Controllers" }
            );
-    
+            routes.MapRoute(
+                    name: "Checkout",
+                    url: "checkout",
+                    defaults: new { controller = "Cart", action = "Payment", id = UrlParameter.Optional },
+                    namespaces: new[] { "NPH_Project.Controllers" }
+                );
             routes.MapRoute(
              name: "Add Cart",
              url: "add-to-cart",
              defaults: new { controller = "Cart", action = "AddItem", id = UrlParameter.Optional },
              namespaces: new[] { "NPH_Project.Controllers" }
          );
+
+            routes.MapRoute(
+          name: "Shopping Success",
+          url: "shopping-success",
+          defaults: new { controller = "Cart", action = "ShoppingSuccess", id = UrlParameter.Optional },
+          namespaces: new[] { "NPH_Project.Controllers" }
+      );
             routes.MapRoute(
            name: "Admin",
            url: "admin",

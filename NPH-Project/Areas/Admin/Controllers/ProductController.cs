@@ -27,8 +27,8 @@ namespace NPH_Project.Areas.Admin.Controllers
         // GET: Admin/Product/Details/5
         public ActionResult Details(long id)
         {
-            var slide = new ProductDao().ViewDetail(id);
-            return View(slide);
+            var product = new ProductDao().ViewDetail(id);
+            return View(product);
         }
         
         public void SetViewBag(long? selectId = null)

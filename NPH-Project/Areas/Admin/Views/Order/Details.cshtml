@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var orderDetail = (List<Models.EF.OrderDetail>)ViewBag.OrderDetail;
+    var order = (Models.EF.Order)ViewBag.Order;
+}
+@section header{
+    DETAILS}
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <!-- Basic Card Example -->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Customer Information</h6>
+                </div>
+                <div class="card-body">
+                    <dl class="dl-horizontal">
+                        <dt>Date of Order</dt>
+                        <dd>@order.CreatedDate</dd>
+                        <dt>Customer Name</dt>
+                        <dd>@order.ShipName</dd>
+                        <dt>Address</dt>
+                        <dd>@order.ShipAddress</dd>
+                        <dt>Phone Number</dt>
+                        <dd>@order.ShipMobile</dd>
+                        <dt>Email</dt>
+                        <dd>@order.ShipEmail</dd>
+                    </dl>
+                </div>
+            </div>
+            <!-- Earnings (Annual) Card Example -->
+            <div class="card mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    TOTAL:
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">@string.Format(info, "{0:#,#} VND", order.Total)</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p> 
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Order Details</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th colspan="2" class="text-center">Product</th>
+                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in orderDetail)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="@item.Product.Image" style="width:100px">
+                                        </td>
+                                        <td>
+                                            <div>
+                                                @item.Product.Name
+                                            </div>
+
+                                        <td>
+                                            <span> @string.Format(info, "{0:#,#} VND", item.Product.Price)</span>
+                                        </td>
+                                        <td>
+                                            @item.Quantity
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

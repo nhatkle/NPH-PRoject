@@ -19,6 +19,11 @@ namespace NPH_Project.Areas.Admin.Controllers
             ViewBag.SeachString = searchString;
             return View(model);
         }
+        public void SetViewBag(long? selectId = null)
+        {
+            var dao = new ProductCategoryDao();
+            ViewBag.CategoryID = new SelectList(dao.ListAll(), "ID", "Name", selectId);
+        }
         [HttpGet]
         public ActionResult Create()
         {

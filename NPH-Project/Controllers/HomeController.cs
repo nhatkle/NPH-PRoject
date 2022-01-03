@@ -44,17 +44,7 @@ namespace NPH_Project.Controllers
             return PartialView(model);
         }
 
-        [ChildActionOnly]
-        public PartialViewResult BagCart()
-        {
-            var cart = Session[CommonConstants.CartSession];
-            var list = new List<CartItem>();
-            if (cart != null)
-            {
-                list = (List<CartItem>)cart;
-            }
-            return PartialView(list);
-        }
+      
 
         [ChildActionOnly]
         public ActionResult Footer()

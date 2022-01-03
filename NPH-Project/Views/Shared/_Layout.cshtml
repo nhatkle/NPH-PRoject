@@ -75,7 +75,12 @@
                     </div>
                     <!--Mobile Logo-->
                     <div class="col-4 col-sm-3 col-md-3 col-lg-2">
-                        @{Html.RenderAction("BagCart", "Home"); }
+                        <div class="site-cart">
+                            <a href="/cart" class="site-header__cart" title="Cart">
+                                <i onclick="window.location.href='/cart'" class="icon anm anm-bag-l"> @Html.Action("BagCart", "Cart")</i>  
+                            </a>
+                          
+                        </div>
                         <div class="site-header__search">
                             <button type="button" class="search-trigger"><i class="icon anm anm-search-l"></i></button>
                         </div>
@@ -96,7 +101,6 @@
         <footer id="footer">
             @{Html.RenderAction("Footer", "Home"); }
         </footer>
-       
         <!--End Footer-->
         <!--Scoll Top-->
         <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
