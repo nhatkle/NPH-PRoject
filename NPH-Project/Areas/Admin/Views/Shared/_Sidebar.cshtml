@@ -1,9 +1,9 @@
 ﻿  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <div class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+    <div class="sidebar-brand d-flex align-items-center justify-content-center" href="">
 
-        <div class="sidebar-brand-text mx-3">NPH<sup>Management</sup></div>
+        <a href="/Admin/Home" style="color:white" class="sidebar-brand-text mx-3">NPH<sup>Management</sup></a>
     </div>
 
     <!-- Divider -->
@@ -58,8 +58,9 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" @Html.ActionLink("Menu", "Index", "Menu")</a>
                     <a class="collapse-item" @Html.ActionLink("Slide", "Index", "Slide")</a>
-                    <a class="collapse-item" @Html.ActionLink("Blog Category", "Index", "BlogCategory")</a>
                     <a class="collapse-item" @Html.ActionLink("Blog", "Index", "blog")</a>
+                    <a class="collapse-item" @Html.ActionLink("About Us", "Index", "AboutUs")</a>
+                    <a class="collapse-item" @Html.ActionLink("Contact", "Index", "Contact")</a>
                 </div>
             </div>
     </li>
@@ -72,6 +73,13 @@
         <a class="nav-link" href="/Admin/Order">
             <i class="fas fa-fw fa-shopping-basket"></i>
             <span>Orders</span>
+        </a>
+    </li>
+    <!-- Nav Item - Order Menu -->
+    <li class="nav-item">
+        <a class="nav-link" href="/Admin/Statistic">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Statistics</span>
         </a>
     </li>
 

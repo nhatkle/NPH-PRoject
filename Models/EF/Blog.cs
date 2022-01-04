@@ -5,6 +5,7 @@ namespace Models.EF
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web;
 
     [Table("Blog")]
     public partial class Blog
@@ -12,6 +13,7 @@ namespace Models.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Blog()
         {
+            Image = "/Areas/Admin/Data/Images/empty.jpg";
             Tags1 = new HashSet<Tag>();
         }
 
@@ -28,6 +30,8 @@ namespace Models.EF
 
         [StringLength(250)]
         public string Image { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase ImageUpload { get; set; }
 
         public long? BlogCategoryID { get; set; }
 

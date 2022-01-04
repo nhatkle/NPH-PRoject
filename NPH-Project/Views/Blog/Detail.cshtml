@@ -1,0 +1,49 @@
+﻿@model Models.EF.Blog
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Body Content-->
+<div id="page-content">
+    <!--Page Title-->
+    <div class="page section-header text-center mb-0">
+        <div class="page-title">
+            <div class="wrapper"><h1 class="page-width">@Model.Name</h1></div>
+        </div>
+    </div>
+    <!--End Page Title-->
+    <div class="bredcrumbWrap">
+        <div class="container breadcrumbs">
+            <a href="/" title="Back to the home page">Home</a><span aria-hidden="true">›</span>
+            <a href="blog-left-sidebar.html" title="Back to News">Blog</a><span aria-hidden="true">›</span><span>@Model.Name</span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <!--Main Content-->
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9 main-col">
+                <div class="blog--list-view">
+                    <div class="article">
+                        <!-- Article Image -->
+                        <a class="article_featured-image" href="#"><img class="blur-up lazyload" data-src="@Model.Image" src="@Model.Image"></a>
+                        <h1><a href="#">@Model.Name</a></h1>
+                        <ul class="publish-detail">
+                            <li><i class="icon anm anm-clock-r"></i> <time >@Model.CreatedDate</time></li>
+                            <li><i  aria-hidden="true">@Model.Description</i> </li>
+                          
+                        </ul>
+                        <div class="rte">
+                            @Html.Raw(Model.Detail)
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+            <!--End Main Content-->
+       
+        </div>
+    </div>
+
+</div>
+<!--End Body Content-->

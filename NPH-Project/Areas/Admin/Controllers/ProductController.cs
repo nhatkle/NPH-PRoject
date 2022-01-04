@@ -11,9 +11,7 @@ using Models.DAO;
 namespace NPH_Project.Areas.Admin.Controllers
 {
     public class ProductController : BaseController
-    {
-
-        NPHDbContext db = new NPHDbContext();
+    {   
         // GET: Admin/Product
         public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {

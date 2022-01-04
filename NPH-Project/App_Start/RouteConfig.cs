@@ -26,6 +26,7 @@ namespace NPH_Project
                defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
                namespaces: new[] { "NPH_Project.Controllers" }
            );
+           
 
             routes.MapRoute(
                name: "Product Category",
@@ -49,6 +50,18 @@ namespace NPH_Project
              name: "Add Cart",
              url: "add-to-cart",
              defaults: new { controller = "Cart", action = "AddItem", id = UrlParameter.Optional },
+             namespaces: new[] { "NPH_Project.Controllers" }
+         );
+            routes.MapRoute(
+            name: "Blog Details",
+            url: "blogs/{metatitle}-{id}",
+            defaults: new { controller = "Blog", action = "Detail", id = UrlParameter.Optional },
+            namespaces: new[] { "NPH_Project.Controllers" }
+        );
+            routes.MapRoute(
+             name: "Blog",
+             url: "blog",
+             defaults: new { controller = "Blog", action = "Index", id = UrlParameter.Optional },
              namespaces: new[] { "NPH_Project.Controllers" }
          );
 
