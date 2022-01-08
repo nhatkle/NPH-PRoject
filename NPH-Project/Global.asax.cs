@@ -24,6 +24,13 @@ namespace NPH_Project
         {
             Application.Lock();
             Application["PageView"] = (int)Application["PageView"] + 1;
+            Application["Online"] = (int)Application["Online"] + 1;
+            Application.UnLock();
+        }
+        protected void Session_End()
+        {
+            Application.Lock();
+            Application["Online"] = (int)Application["Online"] - 1;
             Application.UnLock();
         }
     }

@@ -69,39 +69,116 @@
     <Compile Include="DAO\ProductCategoryDao.cs" />
     <Compile Include="DAO\ProductDao.cs" />
     <Compile Include="DAO\SlideDao.cs" />
+    <Compile Include="DAO\StatisticDao.cs" />
     <Compile Include="DAO\UserDao.cs" />
-    <Compile Include="EF\About.cs" />
-    <Compile Include="EF\Blog.cs" />
-    <Compile Include="EF\BlogCategory.cs" />
-    <Compile Include="EF\Contact.cs" />
-    <Compile Include="EF\Customer.cs" />
-    <Compile Include="EF\Discount.cs" />
-    <Compile Include="EF\Feedback.cs" />
-    <Compile Include="EF\Footer.cs" />
-    <Compile Include="EF\Menu.cs" />
-    <Compile Include="EF\MenuType.cs" />
-    <Compile Include="EF\NPHDbContext.cs" />
-    <Compile Include="EF\Order.cs" />
-    <Compile Include="EF\OrderDetail.cs" />
-    <Compile Include="EF\Product.cs" />
-    <Compile Include="EF\ProductCategory.cs" />
+    <Compile Include="EF\About.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Blog.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\BlogCategory.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Contact.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Customer.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Discount.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Feedback.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Footer.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\GetRevenueStatistic_Result.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Menu.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MenuType.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\NPHDbContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NPHDbContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\NPHDbContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\NPHDbContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NPHDbContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Order.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OrderDetail.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Product.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ProductCategory.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\ProductViewModel.cs" />
-    <Compile Include="EF\Quantity.cs" />
-    <Compile Include="EF\Slide.cs" />
-    <Compile Include="EF\sysdiagram.cs" />
-    <Compile Include="EF\SystemConfig.cs" />
-    <Compile Include="EF\Tag.cs" />
-    <Compile Include="EF\User.cs" />
+    <Compile Include="EF\Quantity.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Slide.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sysdiagram.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\SystemConfig.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Tag.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\User.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="EF\NPHDbContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NPHDbContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF\NPHDbContext.edmx.diagram">
+      <DependentUpon>NPHDbContext.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
+    <Content Include="EF\NPHDbContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NPHDbContext.edmx</DependentUpon>
+      <LastGenOutput>NPHDbContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\NPHDbContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NPHDbContext.edmx</DependentUpon>
+      <LastGenOutput>NPHDbContext.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

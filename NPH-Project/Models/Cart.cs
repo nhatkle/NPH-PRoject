@@ -51,6 +51,7 @@ namespace NPH_Project.Models
             var total = items.Sum(s => s.Product.Price * s.Quantity);
             return (decimal)total;
         }
+
         public void RemoveItem(long id)
         {
             items.RemoveAll(s => s.Product.ID == id);

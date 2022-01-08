@@ -10,12 +10,11 @@
 namespace Models.EF
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Contact
+    public partial class GetRevenueStatistic_Result
     {
-        public int ID { get; set; }
-        public string Content { get; set; }
-        public Nullable<bool> Status { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<decimal> Revenues { get; set; }
+        public Nullable<decimal> Benefit { get; set; }
     }
 }
