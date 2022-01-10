@@ -12,7 +12,7 @@ namespace NPH_Project.Areas.Admin.Controllers
     public class UserController : BaseController
     {
         // GET: Admin/User
-        public ActionResult Index(string searchString, int page = 1,int pageSize = 5)
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {
             var dao = new UserDao();
             var model = dao.ListAllPaging(searchString, page, pageSize);
@@ -21,18 +21,22 @@ namespace NPH_Project.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return View();
-        }
-        public ActionResult Edit(long id)
+        // GET: Admin/User/Details/5
+        public ActionResult Details(int id)
         {
             var user = new UserDao().ViewDetail(id);
-
             return View(user);
         }
-    [HttpPost]
+
+        // GET: Admin/User/Create
+        public ActionResult Create()
+        {
+            User user = new User();
+            return View(user);
+        }
+
+        // POST: Admin/User/Create
+        [HttpPost]
         public ActionResult Create(User user)
         {
             if (ModelState.IsValid)
@@ -53,18 +57,27 @@ namespace NPH_Project.Areas.Admin.Controllers
             }
             return View("Index");
         }
+
+        // GET: Admin/User/Edit/5
+        public ActionResult Edit(int id)
+        {
+            var user = new UserDao().ViewDetail(id);
+            return View(user);
+        }
+
+        // POST: Admin/User/Edit/5
         [HttpPost]
         public ActionResult Edit(User user)
         {
             if (ModelState.IsValid)
-            { 
+            {
                 var dao = new UserDao();
-                if(!string.IsNullOrEmpty(user.Password))
+                if (!string.IsNullOrEmpty(user.Password))
                 {
                     var ecryptedMd5Pas = Encryptor.MD5Hash(user.Password);
                     user.Password = ecryptedMd5Pas;
-                }    
-          
+                }
+
                 var result = dao.Update(user);
                 if (result)
                 {
@@ -78,13 +91,22 @@ namespace NPH_Project.Areas.Admin.Controllers
             }
             return View("Index");
         }
+        // POST: Admin/User/Delete/5
         [HttpDelete]
         public ActionResult Delete(long id)
         {
             new UserDao().Delete(id);
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
-
+        [HttpPost]
+        public JsonResult ChangeStatus(long id)
+        {
+            var result = new UserDao().ChangeStatus(id);
+            return Json(new
+            {
+                status = result
+            });
+        }
     }
 }

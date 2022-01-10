@@ -60,5 +60,18 @@ namespace Models.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRevenueStatistic_Result>("GetRevenueStatistic", fromDateParameter, toDateParameter);
         }
+    
+        public virtual ObjectResult<GetMonthRevenueStatistic_Result> GetMonthRevenueStatistic(string fromDate, string toDate)
+        {
+            var fromDateParameter = fromDate != null ?
+                new ObjectParameter("fromDate", fromDate) :
+                new ObjectParameter("fromDate", typeof(string));
+    
+            var toDateParameter = toDate != null ?
+                new ObjectParameter("toDate", toDate) :
+                new ObjectParameter("toDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMonthRevenueStatistic_Result>("GetMonthRevenueStatistic", fromDateParameter, toDateParameter);
+        }
     }
 }

@@ -4,5 +4,193 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>About</h2>
+@{
+    ViewBag.Title = "About";
+}
+<!-- Begin Li's Breadcrumb Area -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="active">About Us</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Li's Breadcrumb Area End Here -->
+<!-- about wrapper start -->
+<div class="about-us-wrapper pt-60 pb-40">
+    <div class="container">
+        <div class="row">
+            <!-- About Text Start -->
+            <div class="col-lg-6 order-last order-lg-first">
+                <div class="about-text-wrap">
+                    <h2><span>Web Programming</span>Topic: PNP TECH</h2>
+                    <p>PnP Tech is a Technology devices and gadgets Shopping Site created by Nguyen Tien Phat, Nguyen Van Phu and Le Khanh Nhat from class 18D1-TH PM01, HCM University of Econimics and Finance</p>
+                    <p>With the support of MVC 5 ASP.NET of Visual Studio and inspired modern layout by <a href="#">LIMUPA</a> Website, we expect individuals to have the most satisfied experience through our work. </p>
+                    <p>Sincerely</p>
+                    <span>PnP Tech Team</span>
+                </div>
+            </div>
+            <!-- About Text End -->
+            <!-- About Image Start -->
+            <div class="col-lg-5 col-md-10">
+                <div class="about-image-wrap">
+                    <img class="img-full" src="~/Assets/Client/images/about-us/Logo_About.png" alt="About Us" />
+                </div>
+            </div>
+            <!-- About Image End -->
+        </div>
+    </div>
+</div>
+<!-- about wrapper end -->
+<!-- Begin Counterup Area -->
+<!--<div class="counterup-area">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+            <div class="col-lg-3 col-md-6">-->
+<!-- Begin Limupa Counter Area -->
+<!--<div class="limupa-counter white-smoke-bg">
+    <div class="container">
+        <div class="counter-img">
+            <img src="images/about-us/icon/1.png" alt="">
+        </div>
+        <div class="counter-info">
+            <div class="counter-number">
+                <h3 class="counter">2169</h3>
+            </div>
+            <div class="counter-text">
+                <span>HAPPY CUSTOMERS</span>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- limupa Counter Area End Here -->
+<!--</div>
+<div class="col-lg-3 col-md-6">-->
+<!-- Begin limupa Counter Area -->
+<!--<div class="limupa-counter gray-bg">
+    <div class="counter-img">
+        <img src="images/about-us/icon/2.png" alt="">
+    </div>
+    <div class="counter-info">
+        <div class="counter-number">
+            <h3 class="counter">869</h3>
+        </div>
+        <div class="counter-text">
+            <span>AWARDS WINNED</span>
+        </div>
+    </div>
+</div>-->
+<!-- limupa Counter Area End Here -->
+<!--</div>
+<div class="col-lg-3 col-md-6">-->
+<!-- Begin limupa Counter Area -->
+<!--<div class="limupa-counter white-smoke-bg">
+    <div class="counter-img">
+        <img src="images/about-us/icon/3.png" alt="">
+    </div>
+    <div class="counter-info">
+        <div class="counter-number">
+            <h3 class="counter">689</h3>
+        </div>
+        <div class="counter-text">
+            <span>HOURS WORKED</span>
+        </div>
+    </div>
+</div>-->
+<!-- limupa Counter Area End Here -->
+<!--</div>
+<div class="col-lg-3 col-md-6">-->
+<!-- Begin limupa Counter Area -->
+<!--<div class="limupa-counter gray-bg">
+    <div class="counter-img">
+        <img src="images/about-us/icon/4.png" alt="">
+    </div>
+    <div class="counter-info">
+        <div class="counter-number">
+            <h3 class="counter">2169</h3>
+        </div>
+        <div class="counter-text">
+            <span>COMPLETE PROJECTS</span>
+        </div>
+    </div>
+</div>-->
+<!-- limupa Counter Area End Here -->
+<!--</div>
+        </div>
+    </div>
+</div>-->
+<!-- Counterup Area End Here -->
+<!-- team area wrapper start -->
+<div class="team-area pt-60 pt-sm-44">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="li-section-title capitalize mb-25">
+                    <h2><span>our team</span></h2>
+                </div>
+            </div>
+        </div> <!-- section title end -->
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team-member mb-60 mb-sm-30 mb-xs-30">
+                    <div class="team-thumb">
+                        <img src="~/Assets/Client/images/about-us/IMG_0282.png" alt="Our Team Member">
+                    </div>
+                    <div class="team-content text-center">
+                        <h3>Le Khanh Nhat</h3>
+                        <p>Front End</p>
+                        <a href="#">185050196</a>
+                        <div class="team-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end single team member -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team-member mb-60 mb-sm-30 mb-xs-30">
+                    <div class="team-thumb">
+                        <img src="~/Assets/Client/images/about-us/IMG_0308.png" alt="Our Team Member">
+                    </div>
+                    <div class="team-content text-center">
+                        <h3>Nguyen Tien Phat</h3>
+                        <p>Full-stack</p>
+                        <a href="#">185050457</a>
+                        <div class="team-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end single team member -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team-member mb-30 mb-sm-60">
+                    <div class="team-thumb">
+                        <img src="~/Assets/Client/images/about-us/IMG_0309.png" alt="Our Team Member">
+                    </div>
+                    <div class="team-content text-center">
+                        <h3>Nguyen Van Phu</h3>
+                        <p>Back-End</p>
+                        <a href="#">185050204</a>
+                        <div class="team-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end single team member -->
 
+        </div>
+    </div>
+</div>
+<!-- team area wrapper end -->
+<!-- Begin Footer Area -->

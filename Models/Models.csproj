@@ -95,6 +95,9 @@
     <Compile Include="EF\Footer.cs">
       <DependentUpon>NPHDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\GetMonthRevenueStatistic_Result.cs">
+      <DependentUpon>NPHDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\GetRevenueStatistic_Result.cs">
       <DependentUpon>NPHDbContext.tt</DependentUpon>
     </Compile>

@@ -18,5 +18,9 @@ namespace Models.DAO
         {
             return db.GetRevenueStatistic(fromDate, toDate);
         }
+        public IEnumerable<GetMonthRevenueStatistic_Result> GetMonthRevenueStatistic(string fromDate, string toDate)
+        {
+            return db.GetMonthRevenueStatistic(fromDate, toDate);
+        }
     }
 }

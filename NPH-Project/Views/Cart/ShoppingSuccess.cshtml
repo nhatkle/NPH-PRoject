@@ -3,9 +3,16 @@
     ViewBag.Title = "ShoppingSuccess";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div style="text-align:center">
-    <h2>Shopping Successfull</h2>
-    <h4>Bill of your had sent the Shop. You will receive good in 2-3 days. See you again..Thanks</h4>
-    <a class="btn btn-success" href="@Url.Action("Index","Home")">Continous Shopping...</a>
-</div>
 
+    <div style="text-align:center">
+        <div class="empty-page-content" style="padding-top:100px;">
+            <h1 style="text-transform: uppercase">Shopping Successfull</h1>
+            <h2>PLEASE CHECK YOUR EMAIL TO SEE YOUR ORDER DETAILS</h2>
+            <p class="active">Thank you for shopping our store</p>
+            <a href="#"><img src="~/Assets/Client/images/giphy.gif" /></a>
+            <h4>Bill of yours had sent the Shop. You will receive good in 2-3 days. See you again..Thanks</h4>
+
+            <a class="btn btn-success" href="@Url.Action("Index","Home")">Continous Shopping...</a>
+
+        </div>
+        </div>

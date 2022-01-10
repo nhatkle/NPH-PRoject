@@ -66,7 +66,7 @@
                                         <tr>
 
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.CreatedDate)
+                                                @(item.CreatedDate.HasValue? @item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.ShipName)
@@ -87,9 +87,13 @@
                                                 @Html.DisplayFor(modelItem => item.Status)
                                             </td>
                                             <td>
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                                                 @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
+                                                                                         {
+                                                                                             Confirm = "Delete this Order?",
+                                                                                                  OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                                                                             HttpMethod = "Delete"
+                                                                                         })
                                             </td>
                                         </tr>
                                     }

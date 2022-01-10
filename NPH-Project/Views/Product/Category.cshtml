@@ -6,138 +6,132 @@
 
 
 }
-<!--Collection Banner-->
-<div class="page section-header text-center">
-    <div class="page-title">
-        <div class="wrapper"><h1 class="page-width">@category.Name</h1></div>
-    </div>
-</div>
-<!--End Collection Banner-->
-<div class="container-fluid">
-    <div class="row">
-        <!--Sidebar-->
-        <div class="col-12 col-sm-12 col-md-3 col-lg-2 sidebar filterbar">
-            <div class="closeFilter d-block d-md-none d-lg-none"><i class="icon icon anm anm-times-l"></i></div>
-            <div class="sidebar_tags">
-                <!--Categories-->
-                @{ Html.RenderAction("ProductCategory", "Product");}
-                <!--Categories-->
-            </div>
+
+    <!--Collection Banner-->
+    <div class="page section-header text-center">
+        <div class="page-title">
+            <div class="wrapper"><h1 class="page-width">@category.Name</h1></div>
         </div>
-        <!--End Sidebar-->
-        <!--Main Content-->
-        <div class="col-12 col-sm-12 col-md-9 col-lg-10 main-col">
-            <div class="productList">
-                <div class="grid-products grid--view-items">
-                    <div class="row">
-                        @foreach (var item in Model)
-                        {
-                            var url = "/details/" + item.MetaTitle + "-" + item.ID;
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-3 grid-view-item style2 item">
-                                <div class="grid-view_image">
-                                    <!-- start product image -->
-                                    <a href="@url" class="grid-view-item__link">
-                                        <!-- image -->
-                                        <img class="grid-view-item__image primary blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="image" title="product">
-                                        <!-- End image -->
-                                        <!-- Hover image -->
-                                        <img class="grid-view-item__image hover blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="image" title="product">
-                                        <!-- End hover image -->
-                                        <!-- product label
-                                <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span class="lbl pr-label1">new</span></div>
-                                <!-- End product label -->
-                                    </a>
-                                    <!-- end product image -->
-                                    <!--start product details -->
-                                    <div class="product-details hoverDetails text-center mobile">
-                                        <!-- product name -->
-                                        <div class="product-name">
-                                            <a href="@url">@item.Name</a>
-                                        </div>
-                                        <!-- End product name -->
-                                        <!-- product price -->
-                                        <div class="product-price">
-                                            <!--<span class="old-price">$500.00</span>-->
-                                            <span class="price">@(item.Price.HasValue ? item.Price.Value.ToString("N0"):"Contact")</span>
-                                        </div>
-                                        <!-- End product price -->
-                                        <div class="product-review">
-                                            <i class="font-13 fa fa-star"></i>
-                                            <i class="font-13 fa fa-star"></i>
-                                            <i class="font-13 fa fa-star"></i>
-                                            <i class="font-13 fa fa-star-o"></i>
-                                            <i class="font-13 fa fa-star-o"></i>
-                                        </div>
-                                        <!-- product button -->
-                                        <div class="button-set">
-                                            <!--<a href="#content_quickview" title="Quick View" class="quick-view-popup quick-view" tabindex="0">
-            <i class="icon anm anm-search-plus-r"></i>
-        </a>-->
-                                            <!-- Start product button -->
-                                            <form action="#" method="post" onclick="window.location.href='/Cart/AddItem/@item.ID'">
-                                                <button class="btn btn--secondary cartIcon btn-addto-cart" type="button"><i class="icon anm anm-bag-l"></i></button>
-                                            </form>
-                                            <div class="wishlist-btn">
-                                                <a class="wishlist add-to-wishlist" href="#" title="Add to Wishlist">
-                                                    <i class="icon anm anm-heart-l"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <!-- end product button -->
-                                    </div>
-                                    <!-- End product details -->
-                                </div>
-                            </div>
-                        }
+    </div>
+
+    <div class="empty-page-content">
+        <!--End Collection Banner-->
+        <div class="container-fluid">
+            <div class="row">
+                <!--Sidebar-->
+                <div class="col-12 col-sm-12 col-md-3 col-lg-2 sidebar filterbar">
+                    <div class="closeFilter d-block d-md-none d-lg-none"><i class="icon icon anm anm-times-l"></i></div>
+                    <div class="sidebar_tags">
+                        <!--Categories-->
+                        @{ Html.RenderAction("ProductCategory", "Product");}
+                        <!--Categories-->
                     </div>
                 </div>
+                <!--End Sidebar-->
+                <!--Main Content-->
+                <div class="col-12 col-sm-12 col-md-9 col-lg-10 main-col">
+                    <div class="productList">
+                        <div class="grid-products grid--view-items">
+                            <div class="row">
+                                @foreach (var item in Model)
+                                {
+                                    var url = "/details/" + item.MetaTitle + "-" + item.ID;
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 grid-view-item style2 item">
+                                        <div class="grid-view_image">
+                                            <!-- start product image -->
+                                            <a href="@url" class="grid-view-item__link">
+                                                <!-- image -->
+                                                <img class="grid-view-item__image primary blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="image" title="product">
+                                                <!-- End image -->
+                                                <!-- Hover image -->
+                                                <img class="grid-view-item__image hover blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="image" title="product">
+                                                <!-- End hover image -->
+                                                <!-- product label
+                                            <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span class="lbl pr-label1">new</span></div>
+                                            <!-- End product label -->
+                                            </a>
+                                            <!-- end product image -->
+                                            <!--start product details -->
+                                            <div class="product-details hoverDetails text-center mobile">
+                                                <!-- product name -->
+                                                <div class="product-name">
+                                                    <a href="@url">@item.Name</a>
+                                                </div>
+                                                <!-- End product name -->
+                                                <!-- product price -->
+                                                <div class="product-price">
+                                                    <!--<span class="old-price">$500.00</span>-->
+                                                    <span class="price">@(item.Price.HasValue ? item.Price.Value.ToString("N0"):"Contact")</span>
+                                                </div>
+                                              
+                                                <!-- product button -->
+                                                <div class="button-set">
+                                                    <!--<a href="#content_quickview" title="Quick View" class="quick-view-popup quick-view" tabindex="0">
+                                                    <i class="icon anm anm-search-plus-r"></i>
+                                                </a>-->
+                                                    <!-- Start product button -->
+                                                    <form action="#" method="post" onclick="window.location.href='/Cart/AddItem/@item.ID'">
+                                                        <button class="btn btn--secondary cartIcon btn-addto-cart" type="button"><i class="icon anm anm-bag-l" style="color:black"></i></button>
+                                                    </form>
 
-            </div>
-            <!--End Main Content-->
-            @if (ViewBag.TotalPage > 1)
-            {
-                var pageDisplay = (int)ViewBag.MaxPage;
-                int totalPage = (int)ViewBag.TotalPage;
-                int currentPage = ((int)ViewBag.Page);
+                                                </div>
+                                                <!-- end product button -->
+                                            </div>
+                                            <!-- End product details -->
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
 
-                //create numberic links
-                var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
-                var endPageIndex = Math.Max(totalPage, currentPage + pageDisplay / 2);
+                    </div>
+                    <!--End Main Content-->
+                    @if (ViewBag.TotalPage > 1)
+                    {
+                        var pageDisplay = (int)ViewBag.MaxPage;
+                        int totalPage = (int)ViewBag.TotalPage;
+                        int currentPage = ((int)ViewBag.Page);
 
-                var link = "/product/" + category.MetaTitle + "-" + category.ID;
-                <hr class="clear">
-                <div class="pagination">
-                    <ul>
-                        @if (currentPage > ViewBag.First)
-                        {
-                            <li><a href="@link?page=@ViewBag.First" class="first"><i class="fa fa-angle-double-left"></i> </a></li>
-                            <li><a href="@link?page=@ViewBag.Prev" class="prev"><i class="fa fa-chevron-left"></i> </a></li>
-                        }
-                        @for (int i = startPageIndex; i < endPageIndex; i++)
-                        {
-                            if (currentPage == i)
-                            {
-                                <li><a href="@link?page=@i" class="active" title="Page @i">@i</a></li>
-                            }
-                            else
-                            {
-                                <li><a href="@link?page=@i" class="pos-product-active" title="Page @i">@i</a></li>
-                            }
-                        }
-                        @if (currentPage < ViewBag.totalPage)
-                        {
-                            <li><a href="@link?page=@ViewBag.Next" class="next"><i class="fa fa-chevron-right"></i></a></li>
-                            <li><a href="@link?page=@ViewBag.Last" class="last"><i class="fa fa-angle-double-right"></i></a></li>
-                        }
-                    </ul>
+                        //create numberic links
+                        var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+                        var endPageIndex = Math.Max(totalPage, currentPage + pageDisplay / 2);
+
+                        var link = "/product/" + category.MetaTitle + "-" + category.ID;
+                        <hr class="clear">
+                        <div class="pagination">
+                            <ul>
+                                @if (currentPage > ViewBag.First)
+                                {
+                                    <li><a href="@link?page=@ViewBag.First" class="first"><i class="fa fa-angle-double-left"></i> </a></li>
+                                    <li><a href="@link?page=@ViewBag.Prev" class="prev"><i class="fa fa-chevron-left"></i> </a></li>
+                                }
+                                @for (int i = startPageIndex; i < endPageIndex; i++)
+                                {
+                                    if (currentPage == i)
+                                    {
+                                        <li><a href="@link?page=@i" class="active" title="Page @i">@i</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@link?page=@i" class="pos-product-active" title="Page @i">@i</a></li>
+                                    }
+                                }
+                                @if (currentPage < ViewBag.totalPage)
+                                {
+                                    <li><a href="@link?page=@ViewBag.Next" class="next"><i class="fa fa-chevron-right"></i></a></li>
+                                    <li><a href="@link?page=@ViewBag.Last" class="last"><i class="fa fa-angle-double-right"></i></a></li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <span>No Paging</span>
+                    }
                 </div>
-            }
-            else
-            {
-                <span>No Paging</span>
-            }
+            </div>
+
         </div>
+        <!--Paging-->
     </div>
 
-</div>
-<!--Paging-->

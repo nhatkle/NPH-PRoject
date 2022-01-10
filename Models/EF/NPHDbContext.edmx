@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NPHDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NPHDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="About">
           <Key>
             <PropertyRef Name="ID" />
@@ -251,14 +251,6 @@
           <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
           <Property Name="Status" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'NPHData.dbo.Statistic' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Statistic">
-          <Property Name="OrderID" Type="bigint" />
-          <Property Name="ProductID" Type="bigint" />
-          <Property Name="Revenue" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Benefit" Type="decimal" Precision="18" Scale="0" />
-        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -411,12 +403,10 @@ warning 6013: The table/view 'NPHData.dbo.Statistic' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'NPHData.dbo.Statistic' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_Statistic_Order" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'NPHData.dbo.Statistic' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_Statistic_Product" />-->
+        <Function Name="GetMonthRevenueStatistic" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fromDate" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="toDate" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="GetRevenueStatistic" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fromDate" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="toDate" Type="nvarchar(max)" Mode="In" />
@@ -480,8 +470,7 @@ error 6004: The table 'NPHData.dbo.Statistic' is referenced by a relationship, b
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NPHDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -928,9 +917,18 @@ error 6004: The table 'NPHData.dbo.Statistic' is referenced by a relationship, b
             <Parameter Name="fromDate" Mode="In" Type="String" />
             <Parameter Name="toDate" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetMonthRevenueStatistic" ReturnType="Collection(NPHDataModel.GetMonthRevenueStatistic_Result)">
+            <Parameter Name="fromDate" Mode="In" Type="String" />
+            <Parameter Name="toDate" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetRevenueStatistic_Result">
           <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Revenues" Nullable="true" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="Benefit" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="GetMonthRevenueStatistic_Result">
+          <Property Type="Int32" Name="Month" Nullable="true" />
           <Property Type="Decimal" Name="Revenues" Nullable="true" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="Benefit" Nullable="true" Precision="38" Scale="0" />
         </ComplexType>
@@ -1253,6 +1251,15 @@ error 6004: The table 'NPHData.dbo.Statistic' is referenced by a relationship, b
             <ResultMapping>
               <ComplexTypeMapping TypeName="NPHDataModel.GetRevenueStatistic_Result">
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Revenues" ColumnName="Revenues" />
+                <ScalarProperty Name="Benefit" ColumnName="Benefit" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetMonthRevenueStatistic" FunctionName="NPHDataModel.Store.GetMonthRevenueStatistic">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NPHDataModel.GetMonthRevenueStatistic_Result">
+                <ScalarProperty Name="Month" ColumnName="Month" />
                 <ScalarProperty Name="Revenues" ColumnName="Revenues" />
                 <ScalarProperty Name="Benefit" ColumnName="Benefit" />
               </ComplexTypeMapping>

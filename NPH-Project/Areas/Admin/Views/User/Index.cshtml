@@ -6,20 +6,26 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 @section header{
-    USER
-}
-@Html.ActionLink("Create New", "Create")
+    USER}
+@section jsFooter{
+    <script src="~/Assets/Admin/js/controller/usercontroller.js"></script>
+    }
+<a href="User/Create" class="btn btn-success btn-icon-split">
+    <span class="text">Create</span>
+</a>
+
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
-        <input type="text" class="form-control bg-light border small" placeholder="Search for..." name="searchString" value="@ViewBag.SearchString"
-               aria-label="Search" aria-describedby="basic-addon2" />
+        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+               aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
-            <button class="btn btn-primary" type="submit">
+            <button class="btn btn-primary" type="button">
                 <i class="fas fa-search fa-sm"></i>
             </button>
         </div>
     </div>
 </form>
+
 <hr>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -28,13 +34,20 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- DataTales Example -->
+            @if (TempData["AlertMessage"] != null)
+            {
+                <div id="AlertBox" class="alert @TempData["AlertType"] hide">@TempData["AlertMessage"]</div>
+            }
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">User List</h6>
                 </div>
+
                 @using (Html.BeginForm("Index", "User", FormMethod.Get))
                 {
                     <div class="card-body">
+
+
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -44,8 +57,6 @@
                                         <th>Address</th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Created Date</th>
-                                        <th>Create By</th>
                                         <th>Status</th>
                                         <th></th>
                                     </tr>
@@ -54,26 +65,37 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr id="row_@item.ID">
-                                            <td>@item.Username</td>
-                                            <td>@item.Name</td>
-                                            <td>@item.Address</td>
-                                            <td>@item.Email</td>
-                                            <td>@item.Phone</td>
-                                            <td>@item.CreatedDate</td>
-                                            <td>@item.CreatedBy</td>
-                                            <td>@item.Status</td>
                                             <td>
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                                                @Html.ActionLink("Details", "Details", new { id = item.ID })
+                                                @Html.DisplayFor(modelItem => item.Username)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Address)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Email)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Phone)
+                                            </td>
+
+                                            <td>
+                                                <a href="#" class="btn-active" data-id="@item.ID">@(item.Status?"Active":"Block")</a>
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                                                 @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
-                                               {
-                                                   Confirm = "Delete this account?",
-                                                        OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                                   HttpMethod = "Delete"
-                                               })
+                                                                                         {
+                                                                                             Confirm = "Delete this user?",
+                                                                                                  OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                                                                             HttpMethod = "Delete"
+                                                                                         })
                                             </td>
                                         </tr>
                                     }
+
                                 </tbody>
                                 <tfoot>
                                     @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
@@ -91,4 +113,5 @@
     <!-- End of Main Content -->
 
 </div>
-<!-- End of Content Wrapper -->
+
+

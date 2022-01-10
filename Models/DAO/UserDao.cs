@@ -37,6 +37,7 @@ namespace Models.DAO
                 user.Phone = entity.Phone;
                 user.ModifiedBy = entity.ModifiedBy;
                 user.ModifiedDate = DateTime.Now;
+                user.Status = entity.Status;
                 db.SaveChanges();
                 return true;
             }
@@ -46,6 +47,15 @@ namespace Models.DAO
             }
             
         }
+
+        public bool ChangeStatus(long id)
+        {
+            var user = db.Users.Find(id);
+            user.Status = !user.Status;
+            db.SaveChanges();
+            return user.Status;
+        }
+
         public bool Delete(long id)
         {
             try

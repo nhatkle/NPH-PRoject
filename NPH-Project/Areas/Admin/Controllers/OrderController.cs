@@ -73,25 +73,13 @@ namespace NPH_Project.Areas.Admin.Controllers
         }
 
         // GET: Admin/Order/Delete/5
+        [HttpDelete]
         public ActionResult Delete(int id)
         {
-            return View();
-        }
 
-        // POST: Admin/Order/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            // TODO: Add delete logic here
+            new OrderDao().Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }

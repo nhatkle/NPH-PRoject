@@ -19,132 +19,135 @@
         </div>
     </div>
     <!--End Collection Banner-->
-<div class="container">
-    <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+<div class="empty-page-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
 
-            <table class="cart style2">
-                <thead class="cart__row cart__header">
-                    <tr>
-                        <th colspan="2" class="text-center">Product</th>
-                        <th class="text-center">Price</th>
-                        <th class="text-center">Quantity</th>
-                        <th class="text-right">Total</th>
-                        <th class="action">&nbsp;</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Items)
+                <table class="cart style2">
+                    <thead class="cart__row cart__header">
+                        <tr>
+                            <th colspan="2" class="text-center">Product</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-right">Total</th>
+                            <th class="action">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            decimal total = Convert.ToDecimal(item.Product.Price.Value * item.Quantity);
+                            <tr>
+
+                                <td class="cart__image-wrapper cart-flex-item">
+                                    <a href="#"><img class="cart__image" src="@item.Product.Image"></a>
+                                </td>
+                                <td class="cart__meta small--text-left cart-flex-item">
+                                    <div class="list-view-item__title">
+                                        <a href="#">@Html.DisplayFor(model => item.Product.Name) </a>
+                                    </div>
+
+                                    <!--<div class="cart__meta-text">
+                                        Color: Navy<br>Size: Small<br>
+                                    </div>-->
+                                <td class="cart__price-wrapper cart-flex-item">
+                                    <span class="money"> @string.Format(info, "{0:#,#} VND", item.Product.Price)</span>
+                                </td>
+                                <td class="cart__update-wrapper cart-flex-item text-right">
+                                    @using (Html.BeginForm("UpdateQuantity", "Cart"))
+                                    {
+                                        <input type="hidden" value="@item.Product.ID" name="Product_ID" />
+                                        <input type="number" value="@item.Quantity" name="Quantity" />
+
+                                        <input type="submit" value="Update" />
+                                    }
+                                </td>
+                                <td class="text-right small--hide cart-price">
+                                    <div><span class="money">@string.Format(info, "{0:#,#} VND", @total)</span></div>
+                                </td>
+                                <td class="text-center small--hide"><a href="/Cart/RemoveItem/@item.Product.ID" class="btn btn--secondary cart__remove" title="Remove tem"><i class="icon icon anm anm-times-l"></i></a></td>
+
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-left"><a href="@Url.Action("Index","Product")" class="btn--link cart-continue"><i class="icon icon-arrow-circle-left"></i> Continue shopping</a></td>
+
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="your-order-payment">
+                    <div class="your-order">
+                        <h2 class="login-title mb-3">CHECK OUT</h2>
+                    </div>
+                    @using (Html.BeginForm("CheckOut", "Cart"))
                     {
-                        decimal total = Convert.ToDecimal(item.Product.Price.Value * item.Quantity);
-                        <tr>
-
-                            <td class="cart__image-wrapper cart-flex-item">
-                                <a href="#"><img class="cart__image" src="@item.Product.Image"></a>
-                            </td>
-                            <td class="cart__meta small--text-left cart-flex-item">
-                                <div class="list-view-item__title">
-                                    <a href="#">@Html.DisplayFor(model => item.Product.Name) </a>
-                                </div>
-
-                                <!--<div class="cart__meta-text">
-                                    Color: Navy<br>Size: Small<br>
-                                </div>-->
-                            <td class="cart__price-wrapper cart-flex-item">
-                                <span class="money"> @string.Format(info, "{0:#,#} VND", item.Product.Price)</span>
-                            </td>
-                            <td class="cart__update-wrapper cart-flex-item text-right">
-                                @using (Html.BeginForm("UpdateQuantity", "Cart"))
-                                {
-                                    <input type="hidden" value="@item.Product.ID" name="Product_ID" />
-                                    <input type="number" value="@item.Quantity" name="Quantity" />
-
-                                    <input type="submit" value="Update" />
-                                }
-                            </td>
-                            <td class="text-right small--hide cart-price">
-                                <div><span class="money">@string.Format(info, "{0:#,#} VND", @total)</span></div>
-                            </td>
-                            <td class="text-center small--hide"><a href="/Cart/RemoveItem/@item.Product.ID" class="btn btn--secondary cart__remove" title="Remove tem"><i class="icon icon anm anm-times-l"></i></a></td>
-
-                        </tr>
+                        <table style="border-collapse:separate;border-spacing:5px;">
+                            <tr style="border:1px">
+                                <td>
+                                    <strong style="font-size:large">GRAND TOTAL:</strong>
+                                </td>
+                                <td style="font:bold">
+                                    <strong style="font-size:large">@string.Format(info, "{0:#,#} VND", Model.TotalMoney())</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Name:</td>
+                                <td>
+                                    <input type="text" name="ShipName" required />
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Address Delivery:</td>
+                                <td>
+                                    <input type="text" name="ShipAddress" required />
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Phone Number:</td>
+                                <td>
+                                    <input type="text" name="ShipMobile" required />
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td>
+                                    <input type="text" name="ShipEmail" required />
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="submit" value="Place Order" class="btn btn-success" />
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="text-align:right"> </td>
+                            </tr>
+                        </table>
                     }
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3" class="text-left"><a href="@Url.Action("Index","Product")" class="btn--link cart-continue"><i class="icon icon-arrow-circle-left"></i> Continue shopping</a></td>
 
-                    </tr>
-                </tfoot>
-            </table>
-
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-            <div class="your-order-payment">
-                <div class="your-order">
-                    <h2 class="login-title mb-3">CHECK OUT</h2>
                 </div>
-                @using (Html.BeginForm("CheckOut", "Cart"))
-                {
-                    <table style="border-collapse:separate;border-spacing:5px;">
-                        <tr style="border:1px">
-                            <td>
-                                <strong style="font-size:large">GRAND TOTAL:</strong>
-                            </td>
-                            <td style="font:bold">
-                                <strong style="font-size:large">@string.Format(info, "{0:#,#} VND", Model.TotalMoney())</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Name:</td>
-                            <td>
-                                <input type="text" name="ShipName" required />
-                            </td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Address Delivery:</td>
-                            <td>
-                                <input type="text" name="ShipAddress" required />
-                            </td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Phone Number:</td>
-                            <td>
-                                <input type="text" name="ShipMobile" required />
-                            </td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Email:</td>
-                            <td>
-                                <input type="text" name="ShipEmail" required />
-                            </td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <input type="submit" value="Place Order" class="btn btn-success" />
-                            </td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="5" style="text-align:right"> </td>
-                        </tr>
-                    </table>
-                }
-
             </div>
         </div>
     </div>
 </div>
-        }
-        else
-        {
-        <span class="alert alert-dark" style="text-align:center">YOUR CART IS EMPTY</span>
-        }
+ 
+}
+else
+{
+    <span class="alert alert-dark" style="text-align:center">YOUR CART IS EMPTY</span>
+}
 
 
 

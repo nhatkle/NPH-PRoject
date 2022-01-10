@@ -19,19 +19,17 @@ namespace Models.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
             Image = "/Areas/Admin/Data/Images/empty.jpg";
+            this.OrderDetails = new HashSet<OrderDetail>();
         }
-    
+        [NotMapped]
+        public HttpPostedFileBase ImageUpload { get; set; }
         public long ID { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
         public string MetaTitle { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
-        [NotMapped]
-        public HttpPostedFileBase ImageUpload { get; set; }
-
         public string Size { get; set; }
         public string MoreImage { get; set; }
         public Nullable<decimal> Price { get; set; }

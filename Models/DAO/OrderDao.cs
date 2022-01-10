@@ -22,7 +22,21 @@ namespace Models.DAO
             return order.ID;
         }
 
-   
+        public bool Delete(int id)
+        {
+            try
+            {
+                var dao = db.Orders.Find(id);
+                db.Orders.Remove(dao);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
         public IEnumerable<Order> ListAllPaging(string searchString, int page, int pageSize)
         {
             IQueryable<Order> model = db.Orders;

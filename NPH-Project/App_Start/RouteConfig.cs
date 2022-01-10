@@ -16,7 +16,7 @@ namespace NPH_Project
 
             routes.MapRoute(
             name: "About",
-            url: "about",
+            url: "about-us",
             defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
             namespaces: new[] { "NPH_Project.Controllers" }
         );

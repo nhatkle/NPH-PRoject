@@ -8,7 +8,9 @@
 @section header{
     PRODUCT
     }
-@Html.ActionLink("Create New", "Create")
+<a href="Product/Create" class="btn btn-success btn-icon-split">
+    <span class="text">Create</span>
+</a>
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
         <input type="text" class="form-control bg-light border small" placeholder="Search for..." name="searchString" value="@ViewBag.SearchString"
@@ -45,18 +47,9 @@
                                         <th>Product Code</th>
                                         <th>Price</th>
                                         <th>Category</th>
-                                        <th>MetaTitle</th>
-                                        <th>Description</th>
                                         <th>Created Date</th>
-                                        <th>Modified Date</th>
-                                        <th>Status</th>
                                         <th>TopHot</th>
-                                        <th>Size</th>
-                                        <th>MoreImage</th>
-                                        <th>Discount</th>
-                                        <th>Quantity</th>
-                                        <th>Detail</th>
-                                        <th>ViewCount</th>
+                                        <th>Status</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -65,7 +58,7 @@
                                     {
                                     <tr id="row_@item.ID">
                                         <td>
-                                            <img style="width:200px" src="@item.Image" />
+                                            <img style="width:150px" src="@item.Image" />
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Name)
@@ -78,55 +71,25 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.ProductCategory.Name)
+                                        <td>
+                                            @(item.CreatedDate.HasValue? @item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.MetaTitle)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Description)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.CreatedDate)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ModifiedDate)
+                                            @(item.TopHot.HasValue? @item.TopHot.Value.ToString("dd/MM/yyyy") : "")
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Status)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.TopHot)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Size)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.MoreImage)
-                                        </td>
-
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DiscountID)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Quantity)
-                                        </td>
-
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Detail)
-                                        </td>
-
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ViewCount)
-                                        </td>
-                                        <td>
                                             @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                                             @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                                             @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
-                                                       {
-                                                           Confirm = "Delete this product?",
-                                                                OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                                           HttpMethod = "Delete"
-                                                       })
+                                                                                           {
+                                                                                               Confirm = "Delete this product?",
+                                                                                                    OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                                                                               HttpMethod = "Delete"
+                                                                                           })
+
                                         </td>
                                     </tr>
                                     }

@@ -37,6 +37,7 @@ namespace Models.DAO
                 product.Size = product.Size;
                 product.MoreImage = entity.MoreImage;
                 product.Price = entity.Price;
+                product.OriginalPrice = product.OriginalPrice;
                 product.DiscountID = entity.DiscountID;
                 product.IncludedVAT = entity.IncludedVAT;
                 product.Quantity = entity.Quantity;
