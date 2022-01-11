@@ -7,7 +7,10 @@
 
 @section header{
     PRODUCT
-    }
+}
+@section jsFooter{
+    <script src="~/Assets/Admin/js/controller/productController.js"></script>
+}
 <a href="Product/Create" class="btn btn-success btn-icon-split">
     <span class="text">Create</span>
 </a>
@@ -78,7 +81,7 @@
                                             @(item.TopHot.HasValue? @item.TopHot.Value.ToString("dd/MM/yyyy") : "")
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Status)
+                                            <a href="#" class="btn-active" data-id="@item.ID">@((bool)item.Status?"Active":"Block")</a>
                                         </td>
                                         <td>
                                             @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
@@ -111,5 +114,3 @@
 
 </div>
 <!-- End of Content Wrapper -->
-
-

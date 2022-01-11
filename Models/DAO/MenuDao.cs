@@ -49,6 +49,15 @@ namespace Models.DAO
             }
 
         }
+
+
+        public bool ChangeStatus(long id)
+        {
+            var menu = db.Menus.Find(id);
+            menu.Status = !menu.Status;
+            db.SaveChanges();
+            return (bool)menu.Status;
+        }
         public bool Delete(int id)
         {
             try

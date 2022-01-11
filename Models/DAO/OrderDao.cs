@@ -3,8 +3,6 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.DAO
 {
@@ -22,6 +20,13 @@ namespace Models.DAO
             return order.ID;
         }
 
+       /* public int ChangeStatus(long id)
+        {
+            var order = db.Orders.Find(id);
+            order.Status = 1;
+            db.SaveChanges();
+            return (int)order.Status;
+        }*/
         public bool Delete(int id)
         {
             try

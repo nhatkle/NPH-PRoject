@@ -24,6 +24,13 @@ namespace Models.DAO
             return entity.ID;
         }
 
+        public bool ChangeStatus(long id)
+        {
+            var pdao = db.Products.Find(id);
+            pdao.Status = !pdao.Status;
+            db.SaveChanges();
+            return (bool)pdao.Status;
+        }
         public bool Update(Product entity)
         {
             try
@@ -37,7 +44,7 @@ namespace Models.DAO
                 product.Size = product.Size;
                 product.MoreImage = entity.MoreImage;
                 product.Price = entity.Price;
-                product.OriginalPrice = product.OriginalPrice;
+                product.OriginalPrice = entity.OriginalPrice;
                 product.DiscountID = entity.DiscountID;
                 product.IncludedVAT = entity.IncludedVAT;
                 product.Quantity = entity.Quantity;

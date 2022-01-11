@@ -27,7 +27,13 @@ namespace Models.DAO
             db.SaveChanges();
             return entity.ID;
         }
-
+        public bool ChangeStatus(long id)
+        {
+            var slide = db.Slides.Find(id);
+            slide.Status = !slide.Status;
+            db.SaveChanges();
+            return (bool)slide.Status;
+        }
         public bool Updateimage(Slide entity)
         {
             try

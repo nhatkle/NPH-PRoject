@@ -8,7 +8,7 @@
 @section header{
     USER}
 @section jsFooter{
-    <script src="~/Assets/Admin/js/controller/usercontroller.js"></script>
+    <script src="~/Assets/Admin/js/controller/userController.js"></script>
     }
 <a href="User/Create" class="btn btn-success btn-icon-split">
     <span class="text">Create</span>
@@ -82,7 +82,7 @@
                                             </td>
 
                                             <td>
-                                                <a href="#" class="btn-active" data-id="@item.ID">@(item.Status?"Active":"Block")</a>
+                                                <a href="#" class="btn-active" data-id="@item.ID">@((bool)item.Status?"Active":"Block")</a>
                                             </td>
                                             <td>
                                                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |

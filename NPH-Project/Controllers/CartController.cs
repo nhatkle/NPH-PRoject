@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Models.EF;
 using NPH_Project.Models;
+using NPH_Project.Common;
+using Common;
 
 namespace NPH_Project.Controllers
 {
@@ -63,10 +64,12 @@ namespace NPH_Project.Controllers
             ViewBag.QuantityCart = total_item;
             return PartialView("BagCart");
         }
+
         public ActionResult ShoppingSuccess()
         {
             return View();
         }
+
         public ActionResult CheckOut(FormCollection form)
         {
             try
@@ -89,6 +92,17 @@ namespace NPH_Project.Controllers
                     order_Detail.Quantity = item.Quantity;
                     db.OrderDetails.Add(order_Detail);
                 }
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/Client/template/neworder.html"));
+
+                content = content.Replace("{{CustomerName}}", form["ShipName"]);
+                content = content.Replace("{{Phone}}", form["ShipMobile"]);
+                content = content.Replace("{{Email}}", form["ShipEmail"]);
+                content = content.Replace("{{Address}}", form["ShipAddress"]);
+                content = content.Replace("{{Total}}", order.Total.ToString());
+                var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+
+                new MailHelper().SendMail(form["ShipEmail"], "New Order from NPH Project Shop", content);
+                new MailHelper().SendMail(toEmail, "New Order from NPH Project Shop", content);
                 db.SaveChanges();
                 cart.ClearCart();
                 return RedirectToAction("ShoppingSuccess", "Cart");

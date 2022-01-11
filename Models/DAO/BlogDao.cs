@@ -72,6 +72,14 @@ namespace Models.DAO
             }
         }
 
+        public bool ChangeStatus(long id)
+        {
+            var blog = db.Blogs.Find(id);
+            blog.Status = !blog.Status;
+            db.SaveChanges();
+            return (bool)blog.Status;
+        }
+
         public bool Updateimage(Blog entity)
         {
             try

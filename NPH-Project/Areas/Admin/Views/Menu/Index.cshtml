@@ -9,7 +9,9 @@
 <a href="Menu/Create" class="btn btn-success btn-icon-split">
     <span class="text">Create</span>
 </a>
-
+@section jsFooter{
+    <script src="~/Assets/Admin/js/controller/menuController.js"></script>
+}
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
         <input type="text" class="form-control bg-light border small" placeholder="Search for..." name="searchString" value="@ViewBag.SearchString"
@@ -53,36 +55,36 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr id="row_@item.ID">
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.MenuType.Name)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Text)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Link)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.DisplayOrder)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Target)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Status)
-                                            </td>
-                                            <td>
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                                @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
-                                                           {
-                                                               Confirm = "Delete this product?",
-                                                                    OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                                               HttpMethod = "Delete"
-                                                           })
-                                            </td>
-                                        </tr>
+                                    <tr id="row_@item.ID">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MenuType.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Text)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Link)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DisplayOrder)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Target)
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn-active" data-id="@item.ID">@((bool)item.Status?"Active":"Block")</a>
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                            @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
+                                                       {
+                                                           Confirm = "Delete this product?",
+                                                                OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                                           HttpMethod = "Delete"
+                                                       })
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                                 <tfoot>
@@ -92,7 +94,7 @@
                         </div>
                     </div>
                 }
-                </div>
+            </div>
 
         </div>
         <!-- /.container-fluid -->
@@ -102,5 +104,3 @@
 
 </div>
 <!-- End of Content Wrapper -->
-
-

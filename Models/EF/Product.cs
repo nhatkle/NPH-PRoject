@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+
 namespace Models.EF
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Web;
-
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            Image = "/Areas/Admin/Data/Images/empty.jpg";
             this.OrderDetails = new HashSet<OrderDetail>();
+            Image = "/Areas/Admin/Data/Images/empty.jpg";
         }
         [NotMapped]
         public HttpPostedFileBase ImageUpload { get; set; }
@@ -49,7 +49,7 @@ namespace Models.EF
         public Nullable<bool> Status { get; set; }
         public Nullable<System.DateTime> TopHot { get; set; }
         public string ViewCount { get; set; }
-    
+
         public virtual Discount Discount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

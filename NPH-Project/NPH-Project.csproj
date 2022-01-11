@@ -210,7 +210,13 @@
     <Content Include="Assets\Admin\img\undraw_profile_2.svg" />
     <Content Include="Assets\Admin\img\undraw_profile_3.svg" />
     <Content Include="Assets\Admin\img\undraw_rocket.svg" />
-    <Content Include="Assets\Admin\js\controller\usercontroller.js" />
+    <Content Include="Assets\Admin\js\controller\productcategoryController.js" />
+    <Content Include="Assets\Admin\js\controller\orderController.js" />
+    <Content Include="Assets\Admin\js\controller\menuController.js" />
+    <Content Include="Assets\Admin\js\controller\blogController.js" />
+    <Content Include="Assets\Admin\js\controller\productController.js" />
+    <Content Include="Assets\Admin\js\controller\slideController.js" />
+    <Content Include="Assets\Admin\js\controller\userController.js" />
     <Content Include="Assets\Admin\js\demo\chart-area-demo.js" />
     <Content Include="Assets\Admin\js\demo\chart-bar-demo.js" />
     <Content Include="Assets\Admin\js\demo\chart-pie-demo.js" />
@@ -2905,6 +2911,7 @@
     <Content Include="Assets\Client\js\vendor\photoswipe-ui-default.min.js" />
     <Content Include="Assets\Client\js\vendor\photoswipe.min.js" />
     <Content Include="Assets\Client\js\vendor\wow.min.js" />
+    <Content Include="Assets\Client\template\neworder.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -3233,6 +3240,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{FD031F41-7111-4734-8E0B-A9BDA96AF04E}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{7eaae034-c2dc-45f2-bcee-a1aa9bc55f93}</Project>
       <Name>Models</Name>

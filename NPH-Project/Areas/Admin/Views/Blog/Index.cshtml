@@ -6,6 +6,9 @@
 }
 @section header{
     Blog}
+@section jsFooter{
+    <script src="~/Assets/Admin/js/controller/blogController.js"></script>
+}
 <a href="Blog/Create" class="btn btn-success btn-icon-split">
     <span class="text">Create</span>
 </a>
@@ -51,33 +54,33 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr id="row_@item.ID">
-                                            <td>
-                                                <img style="width:200px" src="@item.Image" />
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Name)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.MetaTitle)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Description)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Status)
-                                            </td>
-                                            <td>
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                                @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
-                                                        {
-                                                            Confirm = "Delete this product?",
-                                                                 OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                                            HttpMethod = "Delete"
-                                                        })
-                                            </td>
-                                        </tr>
+                                    <tr id="row_@item.ID">
+                                        <td>
+                                            <img style="width:200px" src="@item.Image" />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MetaTitle)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn-active" data-id="@item.ID">@((bool)item.Status?"Active":"Block")</a>
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                            @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
+                                                    {
+                                                        Confirm = "Delete this product?",
+                                                             OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                                        HttpMethod = "Delete"
+                                                    })
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                                 <tfoot>

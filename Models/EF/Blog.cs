@@ -6,7 +6,6 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Models.EF
 {
     using System;
@@ -42,7 +41,7 @@ namespace Models.EF
         public Nullable<System.DateTime> TopHot { get; set; }
         public string ViewCount { get; set; }
         public string Tags { get; set; }
-    
+
         public virtual BlogCategory BlogCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tag> Tags1 { get; set; }

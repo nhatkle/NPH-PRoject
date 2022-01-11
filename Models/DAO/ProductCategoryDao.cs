@@ -37,6 +37,14 @@ namespace Models.DAO
             return entity.ID;
         }
 
+        public bool ChangeStatus(long id)
+        {
+            var pcdao = db.ProductCategories.Find(id);
+            pcdao.Status = !pcdao.Status;
+            db.SaveChanges();
+            return (bool)pcdao.Status;
+        }
+
         public bool Update(ProductCategory entity)
         {
             try

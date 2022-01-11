@@ -137,7 +137,16 @@ namespace NPH_Project.Areas.Admin.Controllers
             new BlogDao().Delete(id);
             return RedirectToAction("Index");
         }
-    }
-   
 
+        [HttpPost]
+        public JsonResult ChangeStatus(long id)
+        {
+            var result = new BlogDao().ChangeStatus(id);
+            return Json(new
+            {
+                status = result
+            });
+        }
+    }
 }
+   

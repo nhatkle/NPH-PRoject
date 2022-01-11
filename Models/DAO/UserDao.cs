@@ -53,7 +53,7 @@ namespace Models.DAO
             var user = db.Users.Find(id);
             user.Status = !user.Status;
             db.SaveChanges();
-            return user.Status;
+            return (bool)user.Status;
         }
 
         public bool Delete(long id)

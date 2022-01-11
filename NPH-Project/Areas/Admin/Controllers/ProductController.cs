@@ -148,5 +148,16 @@ namespace NPH_Project.Areas.Admin.Controllers
             new ProductDao().Delete(id);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public JsonResult ChangeStatus(long id)
+        {
+            var result = new ProductDao().ChangeStatus(id);
+            return Json(new
+            {
+                status = result
+            });
+        }
     }
 }
+
