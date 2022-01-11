@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using Models.EF;
 namespace NPH_Project.Controllers
 {
     public class ProductController : Controller
     {
+        NPHDbContext db = new NPHDbContext();
         // GET: Product
         public ActionResult Index()
         {
@@ -75,6 +76,16 @@ namespace NPH_Project.Controllers
             ViewBag.Prev = page - 1;
 
             return View(model);
+        }
+        public JsonResult GetProducts(string term)
+
+        {
+
+            List<string> products = db.Products.Where(s => s.Name.StartsWith(term))
+
+                .Select(x => x.Name).ToList();
+
+            return Json(products, JsonRequestBehavior.AllowGet);
         }
     }
 }

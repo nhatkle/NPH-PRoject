@@ -11,7 +11,7 @@ using Models.DAO;
 namespace NPH_Project.Areas.Admin.Controllers
 {
     public class ProductController : BaseController
-    {   
+    {
         // GET: Admin/Product
         public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {
@@ -23,6 +23,7 @@ namespace NPH_Project.Areas.Admin.Controllers
         }
 
         // GET: Admin/Product/Details/5
+        [ValidateInput(false)]
         public ActionResult Details(long id)
         {
             var product = new ProductDao().ViewDetail(id);
@@ -35,6 +36,7 @@ namespace NPH_Project.Areas.Admin.Controllers
             ViewBag.CategoryID = new SelectList(dao.ListAll(), "ID", "Name", selectId);
         }
         // GET: Admin/Product/Create
+        [ValidateInput(false)]
         public ActionResult Create()
         {
             SetViewBag();
@@ -43,7 +45,7 @@ namespace NPH_Project.Areas.Admin.Controllers
         }
       
         // POST: Admin/Product/Create
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(Product product)
         {
             if (ModelState.IsValid)
@@ -84,8 +86,9 @@ namespace NPH_Project.Areas.Admin.Controllers
             }
             return View();
         }
-       
+
         // GET: Admin/Product/Edit/5
+        [ValidateInput(false)]
         public ActionResult Edit(long id)
         {
             var product = new ProductDao().ViewDetail(id);
@@ -94,7 +97,7 @@ namespace NPH_Project.Areas.Admin.Controllers
         }
 
         // POST: Admin/Product/Edit/5
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(long id, Product product)
         {
 
@@ -138,17 +141,6 @@ namespace NPH_Project.Areas.Admin.Controllers
             SetViewBag(product.CategoryID);
             return View("Index");
         }
-
-        // GET: Admin/Product/Delete/5
-        [HttpDelete]
-        public ActionResult Delete(int id)
-        {
-
-            // TODO: Add delete logic here
-            new ProductDao().Delete(id);
-            return RedirectToAction("Index");
-        }
-
         [HttpPost]
         public JsonResult ChangeStatus(long id)
         {
@@ -157,6 +149,37 @@ namespace NPH_Project.Areas.Admin.Controllers
             {
                 status = result
             });
+        }
+        // GET: Admin/Product/Delete/5
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            new ProductDao().Delete(id);
+            return RedirectToAction("Index");
+        }
+
+
+  
+        public ActionResult Search(string keyword, int page = 1, int pageSize = 1)
+        {
+            int totalRecord = 0;
+            var model = new ProductDao().Search(keyword, ref totalRecord, page, pageSize);
+
+            ViewBag.Total = totalRecord;
+            ViewBag.Page = page;
+            ViewBag.Keyword = keyword;
+            int maxPage = 5;
+            int totalPage = 0;
+
+            totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize));
+            ViewBag.TotalPage = totalPage;
+            ViewBag.MaxPage = maxPage;
+            ViewBag.First = 1;
+            ViewBag.Last = totalPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Prev = page - 1;
+
+            return View(model);
         }
     }
 }

@@ -90,12 +90,12 @@ namespace Models.DAO
         {
             try
             {
-                var product = db.Products.Find(id);
+                var product = db.Products.Find(id);              
                 db.Products.Remove(product);
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 return false;
             }
@@ -117,7 +117,7 @@ namespace Models.DAO
         //CLIENT
         public List<Product> ListAll()
         {
-            return db.Products.OrderByDescending(x => x.CreatedDate).ToList();
+            return db.Products.Where(x => x.Status == true).OrderByDescending(x => x.CreatedDate).ToList();
         }
         public List<Product> ListByCategoryId(long categoryID,ref int totalRecord, int pageIndex =1, int pageSize = 4)
         {
@@ -146,6 +146,13 @@ namespace Models.DAO
         {
             return db.Products.Find(id);
         }
+
+
+        public List<string> ListName(string keyword)
+        {
+            return db.Products.Where(x => x.Name.Contains(keyword)).Select(x => x.Name).ToList();
+        }
+
 
         public List<ProductViewModel> Search(string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 10)
         {

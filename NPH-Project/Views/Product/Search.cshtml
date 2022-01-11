@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Models.EF.ProductViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search</h2>
+
+
+<table class="table">
+
+
+    @foreach (var item in Model)
+    {
+        var url = "/Detail/" + item.MetaTitle + "-" + item.ID;
+        <tr>
+            <td>
+                <a href="@url">
+                    @Html.DisplayFor(modelItem => item.Name)<br />
+                    <img style="width:240px;height:240px" src="~/Data/@item.Images" alt="Li's Product Image">
+                </a>
+
+            </td>
+            <td>
+            </td>
+        </tr>
+    }
+
+</table>

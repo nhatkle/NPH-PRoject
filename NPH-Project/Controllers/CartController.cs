@@ -2,10 +2,9 @@
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
+using Common;
 using Models.EF;
 using NPH_Project.Models;
-using NPH_Project.Common;
-using Common;
 
 namespace NPH_Project.Controllers
 {

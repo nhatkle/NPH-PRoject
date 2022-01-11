@@ -87,12 +87,11 @@
                                             @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                                             @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                                             @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
-                                                                                           {
-                                                                                               Confirm = "Delete this product?",
-                                                                                                    OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                                                                               HttpMethod = "Delete"
-                                                                                           })
-
+                                                       {
+                                                           Confirm = "Delete this product?",
+                                                                OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                                           HttpMethod = "Delete"
+                                                       })
                                         </td>
                                     </tr>
                                     }

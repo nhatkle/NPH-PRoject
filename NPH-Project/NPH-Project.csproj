@@ -2898,6 +2898,7 @@
     <Content Include="Assets\Client\images\warranty.png" />
     <Content Include="Assets\Client\images\worldwide.png" />
     <Content Include="Assets\Client\js\bootstrap.min.js" />
+    <Content Include="Assets\Client\js\controller\baseController.js" />
     <Content Include="Assets\Client\js\controller\cartController.js" />
     <Content Include="Assets\Client\js\lazysizes.js" />
     <Content Include="Assets\Client\js\main.js" />
@@ -3216,6 +3217,7 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\Detail.cshtml" />
     <Content Include="Views\Shared\_QuickView.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
