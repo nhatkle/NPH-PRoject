@@ -122,7 +122,7 @@ namespace Models.DAO
         public List<Product> ListByCategoryId(long categoryID,ref int totalRecord, int pageIndex =1, int pageSize = 4)
         {
             totalRecord = db.Products.Where(x => x.CategoryID == categoryID).Count();
-            var model = db.Products.Where(x => x.CategoryID == categoryID).OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            var model = db.Products.Where(x => x.CategoryID == categoryID && x.Status == true).OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             return model;
         }
         
@@ -133,13 +133,13 @@ namespace Models.DAO
 
         public List<Product> ListFeatureProduct(int top)
         {
-            return db.Products.Where(x => x.TopHot != null && x.TopHot > DateTime.Now).OrderByDescending(x => x.CreatedDate).Take(top).ToList();
+            return db.Products.Where(x => x.TopHot != null && x.TopHot > DateTime.Now && x.Status == true).OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
 
         public List<Product> ListRelatedProduct(long productId)
         {
             var product = db.Products.Find(productId);
-            return db.Products.Where(x => x.ID != productId && x.CategoryID == product.CategoryID).ToList(); 
+            return db.Products.Where(x => x.ID != productId && x.CategoryID == product.CategoryID && x.Status == true).ToList(); 
         }
 
         public Product ViewDetail(long id)

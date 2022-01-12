@@ -29,9 +29,10 @@
                         <a class="article_featured-image" href="#"><img class="blur-up lazyload" data-src="@Model.Image" src="@Model.Image"></a>
                         <h1><a href="#">@Model.Name</a></h1>
                         <ul class="publish-detail">
-                            <li><i class="icon anm anm-clock-r"></i> <time >@Model.CreatedDate</time></li>
-                            <li><i  aria-hidden="true">@Model.Description</i> </li>
                           
+                            <li><i class="icon anm anm-clock-r"></i> <time>@Model.CreatedDate.Value.ToString("dd/MM/yyyy")</time></li>
+                            <li><i aria-hidden="true">@Model.Description</i> </li>
+
                         </ul>
                         <div class="rte">
                             @Html.Raw(Model.Detail)

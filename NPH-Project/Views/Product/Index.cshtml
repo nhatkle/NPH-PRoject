@@ -2,8 +2,9 @@
 @{
     ViewBag.Title = "Shop";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var listProduct = (List<Models.EF.Product>)ViewBag.Products;
     var listFeatureProducts = (List<Models.EF.Product>)ViewBag.FeatureProducts;
+    var listProduct = (List<Models.EF.Product>)ViewBag.Products;
+
 }
 <!--Body Content-->
 <div id="page-content">
@@ -41,7 +42,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="details">
-                                                    <a class="grid-view-item__title" href="#">@item.Name</a>
+                                                    <a class="grid-view-item__title" href="@url">@item.Name</a>
                                                     <div class="grid-view-item__meta"><span class="product-price__price"><span class="money">@(item.Price.HasValue ? item.Price.Value.ToString("N0"):"Contact")</span></span></div>
                                                 </div>
                                             </div>
@@ -61,67 +62,65 @@
             <div class="col-12 col-sm-12 col-md-9 col-lg-10 main-col">
                 <div class="productList">
                     <!--Toolbar-->
-                   
-                  
                     <!--End Toolbar-->
-                  
-                        <div class="grid-products grid--view-items">
-                            <div class="row">
-                                @foreach (var item in listProduct)
-                                {
-                                    var url = "/details/" + item.MetaTitle + "-" + item.ID;
-                                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 grid-view-item style2 item">
-                                        <div class="grid-view_image">
-                                            <!-- start product image -->
-                                            <a href="@url" class="grid-view-item__link">
-                                                <!-- image -->
-                                                <img class="grid-view-item__image primary blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="image" title="product">
-                                                <!-- End image -->
-                                                <!-- Hover image -->
-                                                <img class="grid-view-item__image hover blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="image" title="product">
-                                                <!-- End hover image -->
-                                                <!-- product label
-                    <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span class="lbl pr-label1">new</span></div>
-                    <!-- End product label -->
-                                            </a>
-                                            <!-- end product image -->
-                                            <!--start product details -->
-                                            <div class="product-details hoverDetails text-center mobile">
-                                                <!-- product name -->
-                                                <div class="product-name">
-                                                    <a href="@url">@item.Name</a>
-                                                </div>
-                                                <!-- End product name -->
-                                                <!-- product price -->
-                                                <div class="product-price">
-                                                    <!--<span class="old-price">$500.00</span>-->
-                                                    <span class="price">@(item.Price.HasValue ? item.Price.Value.ToString("N0"):"Contact")</span>
-                                                </div>
-                                                <!-- End product price -->
-                                                    
-                                                <!-- product button -->
-                                                <div class="button-set">
-                                                    <!--<a href="#content_quickview" title="Quick View" class="quick-view-popup quick-view" tabindex="0">
-                                                        <i class="icon anm anm-search-plus-r"></i>
-                                                    </a>-->
-                                                    <!-- Start product button -->
-                                                    <form action="#" method="post" onclick="window.location.href='/Cart/AddItem/@item.ID'">
-                                                        <button class="btn btn--secondary cartIcon btn-addto-cart" type="button"><i class="icon anm anm-bag-l"></i></button>
-                                                    </form>
-                                       
-                                                </div>
-                                                <!-- end product button -->
+
+                    <div class="grid-products grid--view-items">
+                        <div class="row">
+                            @foreach (var item in listProduct)
+                            {
+                                var url = "/details/" + item.MetaTitle + "-" + item.ID;
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-3 grid-view-item style2 item">
+                                    <div class="grid-view_image">
+                                        <!-- start product image -->
+                                        <a href="@url" class="grid-view-item__link">
+                                            <!-- image -->
+                                            <img class="grid-view-item__image primary blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="image" title="product">
+                                            <!-- End image -->
+                                            <!-- Hover image -->
+                                            <img class="grid-view-item__image hover blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="image" title="product">
+                                            <!-- End hover image -->
+                                            <!-- product label
+                                    <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span class="lbl pr-label1">new</span></div>
+                                    <!-- End product label -->
+                                        </a>
+                                        <!-- end product image -->
+                                        <!--start product details -->
+                                        <div class="product-details hoverDetails text-center mobile">
+                                            <!-- product name -->
+                                            <div class="product-name">
+                                                <a href="@url">@item.Name</a>
                                             </div>
-                                            <!-- End product details -->
+                                            <!-- End product name -->
+                                            <!-- product price -->
+                                            <div class="product-price">
+                                                <!--<span class="old-price">$500.00</span>-->
+                                                <span class="price">@(item.Price.HasValue ? item.Price.Value.ToString("N0"):"Contact")</span>
+                                            </div>
+                                            <!-- End product price -->
+                                            <!-- product button -->
+                                            <div class="button-set">
+                                                <!--<a href="#content_quickview" title="Quick View" class="quick-view-popup quick-view" tabindex="0">
+                                            <i class="icon anm anm-search-plus-r"></i>
+                                        </a>-->
+                                                <!-- Start product button -->
+                                                <form action="#" method="post" onclick="window.location.href='/Cart/AddItem/@item.ID'">
+                                                    <button class="btn btn--secondary cartIcon btn-addto-cart" type="button"><i class="icon anm anm-bag-l"></i></button>
+                                                </form>
+
+                                            </div>
+                                            <!-- end product button -->
                                         </div>
+                                        <!-- End product details -->
                                     </div>
-                                }
                                 </div>
+                            }
                         </div>
-                    
+                    </div>
+
                 </div>
                 <!--End Main Content-->
             </div>
+       
         </div>
     </div>
     <!--End Body Content-->

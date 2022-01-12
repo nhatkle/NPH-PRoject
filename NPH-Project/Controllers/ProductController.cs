@@ -15,7 +15,7 @@ namespace NPH_Project.Controllers
         {
             var productDao = new ProductDao();
             ViewBag.FeatureProducts = productDao.ListFeatureProduct(5);
-            ViewBag.FeatureProducts = productDao.ListRelatedProduct(5);
+
             ViewBag.Products = productDao.ListAll();
             return View();
         }
