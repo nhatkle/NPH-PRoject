@@ -7,13 +7,7 @@
 
 <!--Body Content-->
 <div id="page-content">
-    <!--Page Title-->
-    <div class="page section-header text-center mb-0">
-        <div class="page-title">
-            <div class="wrapper"><h1 class="page-width">Blog</h1></div>
-        </div>
-    </div>
-    <!--End Page Title-->
+
     <div class="bredcrumbWrap">
         <div class="container breadcrumbs">
             <a href="/" title="Back to the home page">Home</a><span aria-hidden="true">›</span><span>Blog</span>
@@ -23,30 +17,29 @@
         <div class="row">
             <!--Main Content-->
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
-                @foreach (var item in listBlog)
-                {
-                    var url = "/blogs/" + item.MetaTitle + "-" + item.ID;
-                    <div class="blog--list-view blog--grid-load-more">
+                
+                <div class="blog--list-view blog--grid-load-more">
+                    @foreach (var item in listBlog)
+                    {
+                        var url = "/blogs/" + item.MetaTitle + "-" + item.ID;
                         <div class="article">
-
                             <!-- Article Image -->
-                            <a class="article_featured-image" href="@url"><img class="blur-up lazyload" data-src="@item.Image" src="@item.Image" style="width:700px"></a>
+                            <a class="article_featured-image" href="@url"><img class="blur-up lazyload"  data-src="@item.Image" src="@item.Image" alt="" style="width:1300px "></a>
                             <h2 class="h3"><a href="@url">@item.Name</a></h2>
                             <ul class="publish-detail">
-                                <li><i class="icon anm anm-clock-r"></i> <time>@(item.CreatedDate.HasValue? @item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</time></li>
+
+                                <li><i class="icon anm anm-clock-r"></i>  <time>@(item.CreatedDate.HasValue? @item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</time></li>
+
                             </ul>
                             <div class="rte">
                                 <p>@item.Description</p>
                             </div>
                             <p><a href="@url" class="btn btn-secondary btn--small">Read more <i class="fa fa-caret-right" aria-hidden="true"></i></a></p>
                         </div>
+                    }
 
-                    </div>
-                }
-                <div class="loadmore-post">
-                    <a href="#;" class="btn loadMorepost">Load More</a>
+
                 </div>
-
             </div>
             <!--End Main Content-->
         </div>
@@ -54,3 +47,4 @@
 
 </div>
 <!--End Body Content-->
+

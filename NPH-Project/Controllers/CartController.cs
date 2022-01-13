@@ -71,6 +71,8 @@ namespace NPH_Project.Controllers
 
         public ActionResult CheckOut(FormCollection form)
         {
+            string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/Client/template/neworder.html"));
+           
             try
             {
                 Cart cart = Session["Cart"] as Cart;
@@ -89,15 +91,20 @@ namespace NPH_Project.Controllers
                     order_Detail.ProductID = item.Product.ID;
                     order_Detail.Price = item.Product.Price;
                     order_Detail.Quantity = item.Quantity;
+                   
+                    content = content.Replace("{{ProductName}}", item.Product.Name);
+                    content = content.Replace("{{Price}}", item.Product.Price.ToString());
+                    content = content.Replace("{{Quantity}}", item.Quantity.ToString());
                     db.OrderDetails.Add(order_Detail);
                 }
-                string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/Client/template/neworder.html"));
-
+               
+                
                 content = content.Replace("{{CustomerName}}", form["ShipName"]);
                 content = content.Replace("{{Phone}}", form["ShipMobile"]);
                 content = content.Replace("{{Email}}", form["ShipEmail"]);
                 content = content.Replace("{{Address}}", form["ShipAddress"]);
                 content = content.Replace("{{Total}}", order.Total.ToString());
+            
                 var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
 
                 new MailHelper().SendMail(form["ShipEmail"], "New Order from NPH Project Shop", content);

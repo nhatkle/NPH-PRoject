@@ -4,7 +4,9 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
 @section header{
     PRODUCT
 }
@@ -59,41 +61,41 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                    <tr id="row_@item.ID">
-                                        <td>
-                                            <img style="width:150px" src="@item.Image" />
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Code)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Price)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ProductCategory.Name)
-                                        <td>
-                                            @(item.CreatedDate.HasValue? @item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")
-                                        </td>
-                                        <td>
-                                            @(item.TopHot.HasValue? @item.TopHot.Value.ToString("dd/MM/yyyy") : "")
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn-active" data-id="@item.ID">@((bool)item.Status?"Active":"Block")</a>
-                                        </td>
-                                        <td>
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                            @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
-                                                       {
-                                                           Confirm = "Delete this product?",
-                                                                OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                                           HttpMethod = "Delete"
-                                                       })
-                                        </td>
-                                    </tr>
+                                        <tr id="row_@item.ID">
+                                            <td>
+                                                <img style="width:150px" src="@item.Image" />
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Code)
+                                            </td>
+                                            <td>
+                                                @string.Format(info, "{0:#,#} VND", item.Price)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ProductCategory.Name)
+                                            <td>
+                                                @(item.CreatedDate.HasValue? @item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")
+                                            </td>
+                                            <td>
+                                                @(item.TopHot.HasValue? @item.TopHot.Value.ToString("dd/MM/yyyy") : "")
+                                            </td>
+                                            <td>
+                                                <a href="#" class="btn-active" data-id="@item.ID">@((bool)item.Status?"Active":"Block")</a>
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
+                                                           {
+                                                               Confirm = "Delete this product?",
+                                                                    OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                                               HttpMethod = "Delete"
+                                                           })
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                                 <tfoot>

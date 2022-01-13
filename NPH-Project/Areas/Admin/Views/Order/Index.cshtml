@@ -4,6 +4,9 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
 @section header{
     ORDER}
 @section jsFooter{
@@ -57,9 +60,7 @@
                                         <th>
                                             Total
                                         </th>
-                                        <th>
-                                            Status
-                                        </th>
+                                    
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -84,19 +85,18 @@
                                                 @Html.DisplayFor(modelItem => item.ShipEmail)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Total)
+                                                @string.Format(info, "{0:#,#} VND", item.Total)
                                             </td>
+                                          
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Status)
-                                            </td>
-                                            <td>
-                                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                                @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions
-                                                                                         {
-                                                                                             Confirm = "Delete this Order?",
-                                                                                                  OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                                                                             HttpMethod = "Delete"
-                                                                                         })
+                                                @Html.ActionLink("Details", "Details", new { id = item.ID }) 
+                                                <!-- Ajax.ActionLink("Delete", "Delete", new { id = item.ID }, new AjaxOptions
+                                             {
+                                                 Confirm = "Delete this Order?",
+                                                      OnComplete = "$('#row_" + item.ID + "').hide()",
+                                                 HttpMethod = "Delete"
+                                             })
+    -->
                                             </td>
                                         </tr>
                                     }

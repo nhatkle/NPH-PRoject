@@ -38,6 +38,12 @@ $.get('Statistic/GetRevenueStatistics?fromDate=' + config.param.fromDate + "&toD
 $.get('Statistic/GetMonthRevenueStatistic?fromDate=' + config.param.fromDate + "&toDate=" + config.param.toDate, null, function (res) {
     RegisterChartMonth(res);
 });
+
+const formatter = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+    minimumFractionDigits: 2
+})
 function RegisterChartDate(statistic) {
     
     var Labels = [];
@@ -45,7 +51,7 @@ function RegisterChartDate(statistic) {
     var _Benefit = [];
 
     var tabledate = '';
-   
+
 
 
     $.each(statistic, function (index, item) {
@@ -55,12 +61,12 @@ function RegisterChartDate(statistic) {
         var day = currentTime.getDate();
         var year = currentTime.getFullYear();
         var date = day + "/" + month + "/" + year;
-
+        
         Labels.push(date);
         _Revenue.push(item.Revenues);
         _Benefit.push(item.Benefit);
 
-        tabledate += ('<tr><td>' + date + '</td><td>' + item.Revenues + '</td><td>' + item.Benefit + '</td></tr>');
+        tabledate += ('<tr><td>' + date + '</td><td>' + formatter.format(item.Revenues) + '</td><td>' + formatter.format(item.Benefit) + '</td></tr>');
         $('.tbdate tbody').html(tabledate);
         
   
@@ -186,7 +192,7 @@ function RegisterChartMonth(mstatistic) {
         _Revenue.push(item.Revenues);
         _Benefit.push(item.Benefit);
 
-        tablemonth += ('<tr><td>' + numdate + '</td><td>' + item.Revenues + '</td><td>' + item.Benefit + '</td></tr>');
+        tablemonth += ('<tr><td>' + numdate + '</td><td>' + formatter.format(item.Revenues) + '</td><td>' + formatter.format(item.Benefit) + '</td></tr>');
         $('.tbmonth tbody').html(tablemonth);
 
     });

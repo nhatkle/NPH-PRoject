@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var listNewProduct = (List<Models.EF.Product>)ViewBag.NewProducts;
+    var listBlog = (List<Models.EF.Blog>)ViewBag.Blogs;
 }
 
 <!--Body Content-->
@@ -29,22 +31,85 @@
                         <a class="article_featured-image" href="#"><img class="blur-up lazyload" data-src="@Model.Image" src="@Model.Image"></a>
                         <h1><a href="#">@Model.Name</a></h1>
                         <ul class="publish-detail">
-                          
+
                             <li><i class="icon anm anm-clock-r"></i> <time>@Model.CreatedDate.Value.ToString("dd/MM/yyyy")</time></li>
                             <li><i aria-hidden="true">@Model.Description</i> </li>
-
                         </ul>
                         <div class="rte">
                             @Html.Raw(Model.Detail)
                         </div>
-                        <hr />
+                       
                     </div>
+              
                 </div>
             </div>
             <!--End Main Content-->
-       
+            <!--Sidebar-->
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 sidebar">
+                <div class="sidebar_tags">  
+                    <div class="sidebar_widget">
+                        <div class="widget-title"><h2>Recent Posts</h2></div>
+                        <div class="widget-content">
+                            <div class="list list-sidebar-products">
+                                <div class="grid">
+                                    @foreach (var item in listBlog)
+                                    {
+                                        var url = "/blogs/" + item.MetaTitle + "-" + item.ID;
+                                        <div class="grid__item">
+                                            <div class="mini-list-item">
+                                                <div class="mini-view_image">
+                                                    <a class="grid-view-item__link" href="@url">
+                                                        <img class="grid-view-item__image blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="" />
+                                                    </a>
+                                                </div>
+                                                <div class="details">
+                                                    <a class="grid-view-item__title" href="@url">@item.Name</a>
+                                                    <div class="grid-view-item__meta"><span class="article__date">  <time>@(item.CreatedDate.HasValue? @item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</time></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="sidebar_widget">
+                        <div class="widget-title"><h2>CHECK OUR NEWEST PRODUCTS</h2></div>
+                        <div class="widget-content">
+                            <div class="list list-sidebar-products">
+                                <div class="grid">
+                                    @foreach (var item in listNewProduct)
+                                    {
+                                        var url = "/details/" + item.MetaTitle + "-" + item.ID;
+                                        <div class="grid__item">
+                                            <div class="mini-list-item">
+                                                <div class="mini-view_image">
+                                                    <a class="grid-view-item__link" href="@url">
+                                                        <img class="grid-view-item__image blur-up lazyload"  data-src="@item.Image" alt="@item.Name" src="@item.Image"/>
+                                                    </a>
+                                                </div>
+                                                <div class="details">
+                                                    <a class="grid-view-item__title" href="@url">Cena Skirt</a>
+                                                    <div class="grid-view-item__meta"><span class="product-price__price"><span class="money">@(item.Price.HasValue ? item.Price.Value.ToString("N0"):"Contact")</span></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Sidebar-->
         </div>
     </div>
 
 </div>
 <!--End Body Content-->
+

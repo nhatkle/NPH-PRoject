@@ -72,6 +72,12 @@ namespace NPH_Project
           namespaces: new[] { "NPH_Project.Controllers" }
       );
             routes.MapRoute(
+           name: "Search",
+           url: "search",
+           defaults: new { controller = "Product", action = "Search", id = UrlParameter.Optional },
+           namespaces: new[] { "NPH_Project.Controllers" }
+     );
+            routes.MapRoute(
            name: "Admin",
            url: "admin",
            defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional },

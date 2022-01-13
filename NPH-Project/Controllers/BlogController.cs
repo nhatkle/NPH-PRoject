@@ -14,12 +14,18 @@ namespace NPH_Project.Controllers
         {
             var blog = new BlogDao();
             ViewBag.Blogs = blog.ListAll();
+            var productDao = new ProductDao();
+            ViewBag.NewProducts = productDao.ListNewProduct(5);
             return View();
         }
         public ActionResult Detail(long id)
         {
-            var blog = new BlogDao().ViewDetail(id);
-            return View(blog);
+            var blog = new BlogDao();
+            ViewBag.Blogs = blog.ListAll();
+            var productDao = new ProductDao();
+            ViewBag.NewProducts = productDao.ListNewProduct(5);
+            var blog1 = new BlogDao().ViewDetail(id);
+            return View(blog1);
         }
     }
 }

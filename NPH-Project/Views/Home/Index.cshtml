@@ -6,16 +6,19 @@
     var listNewProduct = (List<Models.EF.Product>)ViewBag.NewProducts;
 
 }
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
 <!--Home slider-->
 <div class="slideshow slideshow-wrapper pb-section sliderFull">
     <div class="home-slideshow">
         @foreach (var item in slides)
         {
             <div class="slide">
-                <div class="blur-up lazyload bg-size" >
-              
-                   <img class="blur-up lazyload bg-img" data-src="@item.Link" src="@item.Image"/>
-                    
+                <div class="blur-up lazyload bg-size">
+
+                    <img class="blur-up lazyload bg-img" data-src="@item.Link" src="@item.Image" />
+
                 </div>
             </div>
         }
@@ -60,12 +63,12 @@
                                 <form class="variants add" action="#" onclick="window.location.href = '/Cart/AddItem/@item.ID'" method="post">
                                     <button class="btn btn-addto-cart" type="button" tabindex="0">BUY IT NOW</button>
                                 </form>
-                                
+
                                 <div class="button-set">
                                     <!--<a href="javascript:void(0)" title="Quick View" class="quick-view-popup quick-view" data-toggle="modal" data-target="#content_quickview">
                                         <i class="icon anm anm-search-plus-r"></i>
                                     </a>-->
-                                  
+
                                 </div>
                                 <!-- end product button -->
                             </div>
@@ -81,7 +84,7 @@
                                 <div class="product-price">
                                     <!--    <span class="old-price">$500.00</span> -->
 
-                                    <span class="price">@(item.Price.HasValue ? item.Price.Value.ToString("N0"):"Contact")</span>
+                                    <span class="price">@string.Format(info, "{0:#,#} VND", (item.Price.HasValue ? item.Price.Value.ToString("N0") : "Contact"))</span>
                                 </div>
                                 <!-- End product price -->
 
@@ -95,4 +98,3 @@
     </div>
 </div>
 <!--Weekly Bestseller-->
-

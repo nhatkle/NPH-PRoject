@@ -2,28 +2,142 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var listFeatureProducts = (List<Models.EF.Product>)ViewBag.FeatureProducts;
 }
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+@section jsFooter{
+    <script type="text/javascript">
+    $(document).ready(function() {
 
-<h2>Search</h2>
+       $("#txtSearch").autocomplete({
+
+            source: '@Url.Action("GetProducts", "Product")',
+
+            minLength: 1
+
+        });
+    });
+
+    </script>
+}
+<div id="page-content">
+    <!--Collection Banner-->
+    <div class="page section-header text-center">
+        <div class="page-title">
+            <div class="wrapper"><h1 class="page-width">Search</h1></div>
+        </div>
+    </div>
+    <!--End Collection Banner-->
+
+    <div class="container-fluid">
+        <div class="row">
+            <!--Sidebar-->
+            <div class="col-12 col-sm-12 col-md-3 col-lg-2 sidebar filterbar">
+                <div class="closeFilter d-block d-md-none d-lg-none"><i class="icon icon anm anm-times-l"></i></div>
+                <div class="sidebar_tags">
+                    <!--Categories-->
+                    @{ Html.RenderAction("ProductCategory", "Product");}
+                    <!--Categories-->
+                    <!--Popular Products-->
+                    <div class="sidebar_widget">
+                        <div class="widget-title"><h2>Popular Products</h2></div>
+                        <div class="widget-content">
+                            <div class="list list-sidebar-products">
+                                <div class="grid">
+                                    @foreach (var item in listFeatureProducts)
+                                    {
+                                        var url = "/details/" + item.MetaTitle + "-" + item.ID;
+                                        <div class="grid__item">
+                                            <div class="mini-list-item">
+                                                <div class="mini-view_image">
+                                                    <a class="grid-view-item__link" href="@url">
+                                                        <img class="grid-view-item__image" src="@item.Image" alt="@item.Name" />
+                                                    </a>
+                                                </div>
+                                                <div class="details">
+                                                    <a class="grid-view-item__title" href="@url">@item.Name</a>
+                                                    <div class="grid-view-item__meta"><span class="product-price__price"><span class="money">@string.Format(info, "{0:#,#} VND", (item.Price.HasValue ? item.Price.Value.ToString("N0") : "Contact"))</span></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
 
 
-<table class="table">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Popular Products-->
+                </div>
+            </div>
+            <!--End Sidebar-->
+            <!--Main Content-->
+            <div class="col-12 col-sm-12 col-md-9 col-lg-10 main-col">
 
+                <div class="productList">
+                    <!--Toolbar-->
+                    <!--End Toolbar-->
 
-    @foreach (var item in Model)
-    {
-        var url = "/Detail/" + item.MetaTitle + "-" + item.ID;
-        <tr>
-            <td>
-                <a href="@url">
-                    @Html.DisplayFor(modelItem => item.Name)<br />
-                    <img style="width:240px;height:240px" src="~/Data/@item.Images" alt="Li's Product Image">
-                </a>
+                    <div class="grid-products grid--view-items">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                var url = "/details/" + item.MetaTitle + "-" + item.ID;
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-3 grid-view-item style2 item">
+                                    <div class="grid-view_image">
+                                        <!-- start product image -->
+                                        <a href="@url" class="grid-view-item__link">
+                                            <!-- image -->
+                                            <img class="grid-view-item__image primary blur-up lazyload" data-src="@item.Images" src="@item.Images" alt="image" title="product">
+                                            <!-- End image -->
+                                            <!-- Hover image -->
+                                            <img class="grid-view-item__image hover blur-up lazyload" data-src="@item.Images" src="@item.Images" alt="image" title="product">
+                                            <!-- End hover image -->
+                                            <!-- product label
+                                            <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span class="lbl pr-label1">new</span></div>
+                                            <!-- End product label -->
+                                        </a>
+                                        <!-- end product image -->
+                                        <!--start product details -->
+                                        <div class="product-details hoverDetails text-center mobile">
+                                            <!-- product name -->
+                                            <div class="product-name">
+                                                <a href="@url">@item.Name</a>
+                                            </div>
+                                            <!-- End product name -->
+                                            <!-- product price -->
+                                            <div class="product-price">
+                                                <!--<span class="old-price">$500.00</span>-->
+                                                <span class="price">@string.Format(info, "{0:#,#} VND", (item.Price.HasValue ? item.Price.Value.ToString("N0") : "Contact"))</span>
+                                            </div>
+                                            <!-- End product price -->
+                                            <!-- product button -->
+                                            <div class="button-set">
+                                                <!--<a href="#content_quickview" title="Quick View" class="quick-view-popup quick-view" tabindex="0">
+                                                    <i class="icon anm anm-search-plus-r"></i>
+                                                </a>-->
+                                                <!-- Start product button -->
+                                                <form action="#" method="post" onclick="window.location.href='/Cart/AddItem/@item.ID'">
+                                                    <button class="btn btn--secondary cartIcon btn-addto-cart" type="button"><i class="icon anm anm-bag-l"></i></button>
+                                                </form>
 
-            </td>
-            <td>
-            </td>
-        </tr>
-    }
+                                            </div>
+                                            <!-- end product button -->
+                                        </div>
+                                        <!-- End product details -->
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
 
-</table>
+                </div>
+                <!--End Main Content-->
+            </div>
+
+        </div>
+    </div>
+    <!--End Body Content-->
+</div>

@@ -28,6 +28,8 @@ namespace NPH_Project.Controllers
 
         public ActionResult Category(int id, int page = 1, int pageSize = 4)
         {
+            var productDao = new ProductDao();
+            ViewBag.FeatureProducts = productDao.ListFeatureProduct(5);
             var category = new ProductCategoryDao().ViewDetail(id);
             ViewBag.Category = category;
             int totalRecord = 0;
@@ -58,9 +60,10 @@ namespace NPH_Project.Controllers
 
         public ActionResult Search(string keyword, int page = 1, int pageSize = 1)
         {
+            var productDao = new ProductDao();
             int totalRecord = 0;
             var model = new ProductDao().Search(keyword, ref totalRecord, page, pageSize);
-
+            ViewBag.FeatureProducts = productDao.ListFeatureProduct(5);
             ViewBag.Total = totalRecord;
             ViewBag.Page = page;
             ViewBag.Keyword = keyword;

@@ -6,6 +6,20 @@
     var listProduct = (List<Models.EF.Product>)ViewBag.Products;
 
 }
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+@section jsFooter{
+    <script>
+        $(".grid").slice(0.4).show();
+        $(".btn").on("click", function () {
+            $(".grid:hidden").slice(0, 4).slideDown();
+            if ($(".grid:hidden").length = 0) {
+                $(".btn").fadeOut('slow');
+            }
+        });
+    </script>
+}
 <!--Body Content-->
 <div id="page-content">
     <!--Collection Banner-->
@@ -43,13 +57,11 @@
                                                 </div>
                                                 <div class="details">
                                                     <a class="grid-view-item__title" href="@url">@item.Name</a>
-                                                    <div class="grid-view-item__meta"><span class="product-price__price"><span class="money">@(item.Price.HasValue ? item.Price.Value.ToString("N0"):"Contact")</span></span></div>
+                                                    <div class="grid-view-item__meta"><span class="product-price__price"><span class="money">@string.Format(info, "{0:#,#} VND", (item.Price.HasValue ? item.Price.Value.ToString("N0") : "Contact"))</span></span></div>
                                                 </div>
                                             </div>
                                         </div>
                                     }
-
-
                                 </div>
                             </div>
                         </div>
@@ -61,9 +73,6 @@
             <!--Main Content-->
             <div class="col-12 col-sm-12 col-md-9 col-lg-10 main-col">
                 <div class="productList">
-                    <!--Toolbar-->
-                    <!--End Toolbar-->
-
                     <div class="grid-products grid--view-items">
                         <div class="row">
                             @foreach (var item in listProduct)
@@ -80,8 +89,8 @@
                                             <img class="grid-view-item__image hover blur-up lazyload" data-src="@item.Image" src="@item.Image" alt="image" title="product">
                                             <!-- End hover image -->
                                             <!-- product label
-                                    <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span class="lbl pr-label1">new</span></div>
-                                    <!-- End product label -->
+                                            <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span class="lbl pr-label1">new</span></div>
+                                            <!-- End product label -->
                                         </a>
                                         <!-- end product image -->
                                         <!--start product details -->
@@ -94,14 +103,14 @@
                                             <!-- product price -->
                                             <div class="product-price">
                                                 <!--<span class="old-price">$500.00</span>-->
-                                                <span class="price">@(item.Price.HasValue ? item.Price.Value.ToString("N0"):"Contact")</span>
+                                                <span class="price">@string.Format(info, "{0:#,#} VND", (item.Price.HasValue ? item.Price.Value.ToString("N0") : "Contact"))</span>
                                             </div>
                                             <!-- End product price -->
                                             <!-- product button -->
                                             <div class="button-set">
                                                 <!--<a href="#content_quickview" title="Quick View" class="quick-view-popup quick-view" tabindex="0">
-                                            <i class="icon anm anm-search-plus-r"></i>
-                                        </a>-->
+                                                    <i class="icon anm anm-search-plus-r"></i>
+                                                </a>-->
                                                 <!-- Start product button -->
                                                 <form action="#" method="post" onclick="window.location.href='/Cart/AddItem/@item.ID'">
                                                     <button class="btn btn--secondary cartIcon btn-addto-cart" type="button"><i class="icon anm anm-bag-l"></i></button>
@@ -116,11 +125,10 @@
                             }
                         </div>
                     </div>
-
                 </div>
                 <!--End Main Content-->
             </div>
-       
+
         </div>
     </div>
     <!--End Body Content-->
